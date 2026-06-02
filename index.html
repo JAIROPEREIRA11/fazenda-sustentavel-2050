@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazenda Sustentável 2050</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Tela Inicial -->
+    <section id="menu" class="tela ativa">
+
+        <h1>🚜 Fazenda Sustentável 2050</h1>
+
+        <p>
+            Construa uma fazenda produtiva sem destruir o meio ambiente.
+        </p>
+
+        <div class="botoes-menu">
+            <button id="btnJogar">Jogar</button>
+            <button id="btnTutorial">Como Funciona</button>
+        </div>
+
+    </section>
+
+    <!-- Tutorial -->
+    <section id="tutorial" class="tela">
+
+        <h2>📖 Como Jogar</h2>
+
+        <p>
+            Você administrará uma fazenda durante 10 anos.
+        </p>
+
+        <p>
+            Suas decisões afetarão:
+        </p>
+
+        <ul>
+            <li>🌾 Produção</li>
+            <li>💰 Economia</li>
+            <li>🌳 Meio Ambiente</li>
+            <li>😊 Qualidade de Vida</li>
+        </ul>
+
+        <p>
+            Mantenha todos os indicadores equilibrados para alcançar um futuro sustentável.
+        </p>
+
+        <button id="voltarMenu">
+            Voltar
+        </button>
+
+    </section>
+
+    <!-- Jogo -->
+    <section id="jogo" class="tela">
+
+        <header>
+
+            <h2>
+                Ano <span id="ano">1</span> / 10
+            </h2>
+
+            <button id="modoEscuro">
+                🌙
+            </button>
+
+        </header>
+
+        <!-- Indicadores -->
+        <section class="painel">
+
+            <div class="indicador">
+                <p>🌾 Produção</p>
+                <progress id="barraProducao" value="50" max="100"></progress>
+                <span id="valorProducao">50</span>
+            </div>
+
+            <div class="indicador">
+                <p>💰 Economia</p>
+                <progress id="barraEconomia" value="50" max="100"></progress>
+                <span id="valorEconomia">50</span>
+            </div>
+
+            <div class="indicador">
+                <p>🌳 Meio Ambiente</p>
+                <progress id="barraAmbiente" value="50" max="100"></progress>
+                <span id="valorAmbiente">50</span>
+            </div>
+
+            <div class="indicador">
+                <p>😊 Qualidade de Vida</p>
+                <progress id="barraQualidade" value="50" max="100"></progress>
+                <span id="valorQualidade">50</span>
+            </div>
+
+        </section>
+
+        <!-- Evento -->
+        <section class="evento">
+
+            <h3 id="tituloEvento">
+                Uma praga atingiu a plantação.
+            </h3>
+
+            <p id="descricaoEvento">
+                Escolha a melhor estratégia para resolver o problema.
+            </p>
+
+            <div class="opcoes">
+
+                <button id="opcao1">
+                    Aplicar Agrotóxico
+                </button>
+
+                <button id="opcao2">
+                    Controle Biológico
+                </button>
+
+                <button id="opcao3">
+                    Não Fazer Nada
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <!-- Tela Final -->
+    <section id="fim" class="tela">
+
+        <h2 id="resultadoTitulo">
+            Resultado Final
+        </h2>
+
+        <p id="resultadoTexto">
+            Sua jornada terminou.
+        </p>
+
+        <div class="relatorio">
+
+            <p>🌾 Produção Final: <span id="finalProducao"></span></p>
+
+            <p>💰 Economia Final: <span id="finalEconomia"></span></p>
+
+            <p>🌳 Meio Ambiente Final: <span id="finalAmbiente"></span></p>
+
+            <p>😊 Qualidade de Vida Final: <span id="finalQualidade"></span></p>
+
+        </div>
+
+        <button onclick="location.reload()">
+            Jogar Novamente
+        </button>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
