@@ -38,6 +38,15 @@ const opcao2 = document.getElementById("opcao2");
 const opcao3 = document.getElementById("opcao3");
 
 // ======================
+// MAPA DA FAZENDA
+// ======================
+
+const lavoura = document.getElementById("lavoura");
+const rio = document.getElementById("rio");
+const floresta = document.getElementById("floresta");
+const energia = document.getElementById("energia");
+
+// ======================
 // MENU
 // ======================
 
@@ -268,6 +277,8 @@ function atualizarPainel() {
     valorAmbiente.textContent = ambiente;
     valorQualidade.textContent = qualidade;
 
+    atualizarMapa();
+
 }
 
 // ======================
@@ -323,6 +334,7 @@ function verificarFim() {
     }
 
     carregarEvento();
+    atualizarMapa();
 
 }
 
@@ -341,5 +353,104 @@ function finalizarJogo(resultado) {
     document.getElementById("finalEconomia").textContent = economia;
     document.getElementById("finalAmbiente").textContent = ambiente;
     document.getElementById("finalQualidade").textContent = qualidade;
+
+}
+// ======================
+// MAPA DINÂMICO
+// ======================
+
+function atualizarMapa(){
+
+    // FLORESTA
+
+    if(ambiente >= 80){
+
+        floresta.innerHTML =
+        "🌳🌳🌳<br>Floresta Preservada";
+
+    }
+
+    else if(ambiente >= 50){
+
+        floresta.innerHTML =
+        "🌳🌳<br>Floresta Estável";
+
+    }
+
+    else{
+
+        floresta.innerHTML =
+        "🪵<br>Área Degradada";
+
+    }
+
+    // RIO
+
+    if(ambiente >= 70){
+
+        rio.innerHTML =
+        "💧💧💧<br>Rio Limpo";
+
+    }
+
+    else if(ambiente >= 40){
+
+        rio.innerHTML =
+        "💧<br>Rio Sob Pressão";
+
+    }
+
+    else{
+
+        rio.innerHTML =
+        "🟤<br>Rio Poluído";
+
+    }
+
+    // LAVOURA
+
+    if(producao >= 80){
+
+        lavoura.innerHTML =
+        "🌾🌾🌾<br>Alta Produção";
+
+    }
+
+    else if(producao >= 50){
+
+        lavoura.innerHTML =
+        "🌾🌾<br>Boa Produção";
+
+    }
+
+    else{
+
+        lavoura.innerHTML =
+        "🌱<br>Baixa Produção";
+
+    }
+
+    // ENERGIA
+
+    if(economia >= 80){
+
+        energia.innerHTML =
+        "☀️⚡<br>Energia Sustentável";
+
+    }
+
+    else if(economia >= 50){
+
+        energia.innerHTML =
+        "⚡<br>Energia Estável";
+
+    }
+
+    else{
+
+        energia.innerHTML =
+        "🔌<br>Infraestrutura Precária";
+
+    }
 
 }
