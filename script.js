@@ -240,8 +240,10 @@ function carregarEvento() {
 
     opcao1.onclick = () => {
 
+   if(somClique){
     somClique.currentTime = 0;
-
+    somClique.play();
+}
     somClique.play();
 
     aplicarEscolha(evento.opcoes[0]);
@@ -341,9 +343,7 @@ function verificarFim() {
 
     }
 
-    ano++;
 
-    anoSpan.textContent = ano;
 
     if (ano > 10) {
 
@@ -378,6 +378,8 @@ function verificarFim() {
     atualizarMapa();
 
 }
+ano++;
+anoSpan.textContent = ano;
 
 // ======================
 // TELA FINAL
@@ -495,21 +497,25 @@ function atualizarMapa(){
     }
 
 }
-document
-.getElementById("btnMusica")
-.addEventListener("click",()=>{
+const btnMusica = document.getElementById("btnMusica");
 
-    if(musicaAmbiente.paused){
+if(btnMusica){
 
-        musicaAmbiente.play();
+btnMusica.addEventListener("click",()=>{
 
-    }else{
+    if(musicaAmbiente){
 
-        musicaAmbiente.pause();
+        if(musicaAmbiente.paused){
+            musicaAmbiente.play();
+        }else{
+            musicaAmbiente.pause();
+        }
 
     }
 
 });
+
+}
 document
 .getElementById("zoomMais")
 .addEventListener("click",()=>{
