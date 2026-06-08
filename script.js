@@ -9,6 +9,11 @@ let qualidade = 50;
 
 let ano = 1;
 
+let energiaSolar = 0;
+let irrigacao = 0;
+let reflorestamento = 0;
+let compostagem = 0;
+
 // ======================
 // ELEMENTOS
 // ======================
@@ -188,22 +193,22 @@ qualidade: -5
 },
 
 {
-titulo: "Programa de energia solar disponível.",
-descricao: "Deseja participar?",
+titulo: energiaSolar === 0
+? "Programa de energia solar disponível."
+: "Sua fazenda já possui energia solar.",
+
+descricao: energiaSolar === 0
+? "Deseja instalar o sistema?"
+: "Deseja ampliar a capacidade instalada?",
 
 opcoes: [
 
-{
-texto: "Instalar painéis solares",
-efeitos: {
-producao: 5,
-economia: -10,
-ambiente: 20,
-qualidade: 10
-}
-},
 
-{
+texto: energiaSolar === 0
+? "Instalar painéis solares"
+: "Ampliar sistema solar",
+
+
 texto: "Instalar parcialmente",
 efeitos: {
 producao: 3,
@@ -225,7 +230,196 @@ qualidade: 0
 
 ]
 }
+{
+titulo: "Uma nascente da propriedade está perdendo vazão.",
+descricao: "Como deseja agir?",
 
+opcoes:[
+
+{
+texto:"Recuperar mata ciliar",
+efeitos:{
+producao:0,
+economia:-5,
+ambiente:15,
+qualidade:10
+}
+},
+
+{
+texto:"Construir reservatório",
+efeitos:{
+producao:5,
+economia:-10,
+ambiente:5,
+qualidade:5
+}
+},
+
+{
+texto:"Ignorar",
+efeitos:{
+producao:-5,
+economia:0,
+ambiente:-15,
+qualidade:-10
+}
+}
+
+]
+},
+{
+titulo: "A população de abelhas diminuiu.",
+descricao: "Como resolver?",
+
+opcoes:[
+
+{
+texto:"Criar jardim para polinizadores",
+efeitos:{
+producao:10,
+economia:-5,
+ambiente:15,
+qualidade:5
+}
+},
+
+{
+texto:"Contratar polinização artificial",
+efeitos:{
+producao:8,
+economia:-10,
+ambiente:-5,
+qualidade:0
+}
+},
+
+{
+texto:"Não fazer nada",
+efeitos:{
+producao:-10,
+economia:-5,
+ambiente:-10,
+qualidade:-5
+}
+}
+
+]
+},
+{
+titulo: "Há excesso de resíduos orgânicos.",
+descricao: "O que fazer?",
+
+opcoes:[
+
+{
+texto:"Criar sistema de compostagem",
+efeitos:{
+producao:10,
+economia:5,
+ambiente:15,
+qualidade:10
+}
+},
+
+{
+texto:"Enviar para aterro",
+efeitos:{
+producao:0,
+economia:-5,
+ambiente:-10,
+qualidade:0
+}
+},
+
+{
+texto:"Queimar resíduos",
+efeitos:{
+producao:0,
+economia:0,
+ambiente:-20,
+qualidade:-10
+}
+}
+
+]
+},
+{
+titulo: "Um drone agrícola está disponível.",
+descricao: "Deseja utilizar a tecnologia?",
+
+opcoes:[
+
+{
+texto:"Comprar drone",
+efeitos:{
+producao:15,
+economia:-15,
+ambiente:5,
+qualidade:5
+}
+},
+
+{
+texto:"Alugar drone",
+efeitos:{
+producao:10,
+economia:-5,
+ambiente:5,
+qualidade:5
+}
+},
+
+{
+texto:"Não utilizar",
+efeitos:{
+producao:0,
+economia:0,
+ambiente:0,
+qualidade:0
+}
+}
+
+]
+},
+{
+titulo: "Projeto de reflorestamento disponível.",
+descricao: "Participar?",
+
+opcoes:[
+
+{
+texto:"Reflorestar área degradada",
+efeitos:{
+producao:5,
+economia:-10,
+ambiente:25,
+qualidade:10
+}
+},
+
+{
+texto:"Reflorestar parcialmente",
+efeitos:{
+producao:3,
+economia:-5,
+ambiente:10,
+qualidade:5
+}
+},
+
+{
+texto:"Recusar",
+efeitos:{
+producao:0,
+economia:0,
+ambiente:-5,
+qualidade:-5
+}
+}
+
+]
+},
 ];
 
 // ======================
@@ -287,12 +481,19 @@ function aplicarEscolha(opcao) {
     economia += opcao.efeitos.economia;
     ambiente += opcao.efeitos.ambiente;
     qualidade += opcao.efeitos.qualidade;
+    
 
     limitarValores();
 
     atualizarPainel();
 
     verificarFim();
+
+    if(opcao.texto.includes("solar")){
+
+    energiaSolar++;
+
+}
 
 }
 
@@ -485,26 +686,24 @@ function atualizarMapa(){
 
     // ENERGIA
 
-    if(economia >= 80){
+    if(energiaSolar >= 2){
 
-        energia.innerHTML =
-        "☀️⚡<br>Energia Sustentável";
+energia.innerHTML =
+"☀️☀️☀️<br>Energia Solar Avançada";
 
-    }
+}
 
-    else if(economia >= 50){
+else if(energiaSolar >= 1){
 
-        energia.innerHTML =
-        "⚡<br>Energia Estável";
+energia.innerHTML =
+"☀️⚡<br>Energia Solar";
 
-    }
+}
 
-    else{
+else if(economia >= 80){
 
-        energia.innerHTML =
-        "🔌<br>Infraestrutura Precária";
-
-    }
+energia.innerHTML =
+"⚡⚡<br>Energia Eficiente";
 
 }
 const btnMusica = document.getElementById("btnMusica");
