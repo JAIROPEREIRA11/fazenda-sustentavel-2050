@@ -53,6 +53,11 @@ document.getElementById("somClique");
 const musicaAmbiente =
 document.getElementById("musicaAmbiente");
 
+const somVitoria =
+document.getElementById("somVitoria");
+
+const somDerrota =
+document.getElementById("somDerrota");
 // ACESSIBILIDADE
 
 let tamanhoFonte = 16;
@@ -330,19 +335,7 @@ function atualizarPainel() {
 
 function verificarFim() {
 
-    if (
-        producao <= 0 ||
-        economia <= 0 ||
-        ambiente <= 0 ||
-        qualidade <= 0
-    ) {
-
-        finalizarJogo("💀 Sua fazenda entrou em colapso.");
-
-        return;
-
-    }
-
+   producao <= 0 ||
 
 
     if (ano > 10) {
@@ -352,15 +345,32 @@ function verificarFim() {
 
         if (media >= 80) {
 
-            finalizarJogo(
-                "🏆 Modelo de Fazenda Sustentável"
-            );
+           musicaAmbiente.pause();
+
+if(somVitoria){
+    somVitoria.play();
+}
+
+finalizarJogo(
+    if(resultado.includes("🏆")){
+
+    document.body.style.background =
+    "linear-gradient(135deg,#FFD700,#FFA500)";
+    }
+"🏆 Modelo de Fazenda Sustentável"
+);
 
         } else if (media >= 60) {
 
-            finalizarJogo(
-                "🥈 Produtor Consciente"
-            );
+          musicaAmbiente.pause();
+
+if(somVitoria){
+    somVitoria.play();
+}
+
+finalizarJogo(
+"🥈 Produtor Consciente"
+);
 
         } else {
 
