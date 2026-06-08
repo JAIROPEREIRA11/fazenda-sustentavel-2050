@@ -45,6 +45,17 @@ const lavoura = document.getElementById("lavoura");
 const rio = document.getElementById("rio");
 const floresta = document.getElementById("floresta");
 const energia = document.getElementById("energia");
+// SOM
+
+const somClique =
+document.getElementById("somClique");
+
+const musicaAmbiente =
+document.getElementById("musicaAmbiente");
+
+// ACESSIBILIDADE
+
+let tamanhoFonte = 16;
 
 // ======================
 // MENU
@@ -55,7 +66,11 @@ document.getElementById("btnJogar").addEventListener("click", () => {
     menu.classList.remove("ativa");
     jogo.classList.add("ativa");
 
-    carregarEvento();
+   carregarEvento();
+
+atualizarMapa();
+
+atualizarPainel();
 
 });
 
@@ -223,9 +238,35 @@ function carregarEvento() {
     opcao2.textContent = evento.opcoes[1].texto;
     opcao3.textContent = evento.opcoes[2].texto;
 
-    opcao1.onclick = () => aplicarEscolha(evento.opcoes[0]);
-    opcao2.onclick = () => aplicarEscolha(evento.opcoes[1]);
-    opcao3.onclick = () => aplicarEscolha(evento.opcoes[2]);
+    opcao1.onclick = () => {
+
+    somClique.currentTime = 0;
+
+    somClique.play();
+
+    aplicarEscolha(evento.opcoes[0]);
+
+};
+
+opcao2.onclick = () => {
+
+    somClique.currentTime = 0;
+
+    somClique.play();
+
+    aplicarEscolha(evento.opcoes[1]);
+
+};
+
+opcao3.onclick = () => {
+
+    somClique.currentTime = 0;
+
+    somClique.play();
+
+    aplicarEscolha(evento.opcoes[2]);
+
+};
 
 }
 
@@ -454,3 +495,48 @@ function atualizarMapa(){
     }
 
 }
+document
+.getElementById("btnMusica")
+.addEventListener("click",()=>{
+
+    if(musicaAmbiente.paused){
+
+        musicaAmbiente.play();
+
+    }else{
+
+        musicaAmbiente.pause();
+
+    }
+
+});
+document
+.getElementById("zoomMais")
+.addEventListener("click",()=>{
+
+    tamanhoFonte += 2;
+
+    document.body.style.fontSize =
+    tamanhoFonte + "px";
+
+});
+
+document
+.getElementById("zoomMenos")
+.addEventListener("click",()=>{
+
+    tamanhoFonte -= 2;
+
+    document.body.style.fontSize =
+    tamanhoFonte + "px";
+
+});
+document
+.getElementById("altoContraste")
+.addEventListener("click",()=>{
+
+    document.body.classList.toggle(
+    "alto-contraste"
+    );
+
+});

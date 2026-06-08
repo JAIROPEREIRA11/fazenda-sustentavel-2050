@@ -26,26 +26,61 @@
     </section>
 
     <!-- Tutorial -->
-    <section id="tutorial" class="tela">
+    <h2>📖 Como Funciona</h2>
 
-        <h2>📖 Como Jogar</h2>
+<p>
+Você é o gestor de uma fazenda sustentável no ano de 2050.
+</p>
 
-        <p>
-            Você administrará uma fazenda durante 10 anos.
-        </p>
+<p>
+Seu objetivo é produzir alimentos, gerar renda e proteger
+o meio ambiente ao mesmo tempo.
+</p>
 
-        <p>
-            Suas decisões afetarão:
-        </p>
+<p>
+Durante 10 anos você enfrentará desafios reais do campo.
+</p>
 
-        <ul>
-            <li>🌾 Produção</li>
-            <li>💰 Economia</li>
-            <li>🌳 Meio Ambiente</li>
-            <li>😊 Qualidade de Vida</li>
-        </ul>
+<ul>
 
-        <p>
+<li>🌾 Produção agrícola</li>
+
+<li>💰 Economia da fazenda</li>
+
+<li>🌳 Preservação ambiental</li>
+
+<li>😊 Qualidade de vida da comunidade</li>
+
+</ul>
+
+<p>
+Cada escolha altera esses indicadores.
+</p>
+
+<p>
+Se algum deles chegar a zero, a fazenda entra em colapso.
+</p>
+
+<h2>🚜 O que é uma Fazenda Sustentável?</h2>
+
+<ul>
+
+<li>💧 Economiza água</li>
+
+<li>🌳 Preserva florestas</li>
+
+<li>☀️ Utiliza energia limpa</li>
+
+<li>🐝 Protege a biodiversidade</li>
+
+<li>👨‍🌾 Valoriza as pessoas do campo</li>
+
+</ul>
+
+<p>
+O desafio é encontrar equilíbrio entre lucro,
+produção e preservação ambiental.
+</p>
             Mantenha todos os indicadores equilibrados para alcançar um futuro sustentável.
         </p>
 
@@ -60,14 +95,23 @@
 
         <header>
 
-            <h2>
-                Ano <span id="ano">1</span> / 10
-            </h2>
+             <h2>
+        Ano <span id="ano">1</span> / 10
+    </h2>
 
-            <button id="modoEscuro">
-                🌙
-            </button>
+    <div class="acessibilidade">
 
+        <button id="zoomMais">A+</button>
+
+        <button id="zoomMenos">A-</button>
+
+        <button id="altoContraste">🎨</button>
+
+        <button id="modoEscuro">🌙</button>
+
+        <button id="btnMusica">🎵</button>
+
+    </div>
         </header>
 
         <!-- Indicadores -->
@@ -178,7 +222,12 @@
         </button>
 
     </section>
+<audio id="somClique" src="assets/sons/clique.mp3"></audio>
 
+<audio id="musicaAmbiente"
+src="assets/sons/ambiente.mp3"
+loop>
+</audio>
     <script src="script.js"></script>
 
 </body>

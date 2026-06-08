@@ -269,3 +269,35 @@ progress::-webkit-progress-value {
     }
 
 }
+.acessibilidade{
+
+    display:flex;
+    gap:8px;
+
+}
+
+.alto-contraste{
+
+    background:black !important;
+    color:yellow !important;
+
+}
+
+.alto-contraste .indicador,
+.alto-contraste .evento,
+.alto-contraste .area,
+.alto-contraste .relatorio{
+
+    background:#222 !important;
+
+}
+
+#zoomMais,
+#zoomMenos,
+#altoContraste,
+#btnMusica{
+
+    width:55px;
+    height:55px;
+
+}
