@@ -1,35 +1,139 @@
 /* ==========================
-   CONFIGURAÇÃO DE ACESSIBILIDADE DINÂMICA
+   RESET
 ========================== */
-:root {
-    --tamanho-base: 16px; /* Controlado diretamente pelo JavaScript */
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ==========================
+   BODY
+========================== */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: var(--tamanho-base); /* Vinculado ao sistema de zoom universal */
     min-height: 100vh;
     background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;
-    padding: 100px 15px 20px 15px;
-    transition: background 0.4s ease, font-size 0.2s ease;
+    padding: 90px 20px 20px 20px; /* Aumentado o padding superior para a barra fixa */
+    transition: 0.4s;
 }
 
 /* ==========================
-   BARRA DE ACESSIBILIDADE FIXA
+   TELAS
 ========================== */
-.barra-acessibilidade {
+.tela {
+    display: none;
+    max-width: 900px;
+    margin: auto;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+/* ==========================
+   MENU PRINCIPAL COM IMAGEM PROTEGIDA
+========================== */
+#menu {
+    text-align: center;
+    margin-top: 30px;
+    padding: 60px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    
+    /* Configuração padrão da foto de fundo da fazenda */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('fazenda.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+#menu h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+#menu p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.botoes-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+button {
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: 0.3s;
+    background: white;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================
+   TUTORIAL
+========================== */
+#tutorial {
+    max-width: 900px;
+    margin: auto;
+}
+
+#tutorial h2 {
+    margin: 20px 0;
+}
+
+#tutorial p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+#tutorial ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+#tutorial li {
+    margin-bottom: 10px;
+}
+
+/* ==========================
+   CABEÇALHO DO JOGO
+========================== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ==========================
+   BARRA DE ACESSIBILIDADE FIXA NO TOPO
+========================== */
+.acessibilidade-fixa {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
@@ -38,259 +142,114 @@ body {
     z-index: 1000;
 }
 
-.barra-acessibilidade button {
-    width: 45px;
-    height: 45px;
+.acessibilidade-fixa button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
     padding: 0;
-    font-size: 16px !important; /* Mantém estável a barra superior */
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
-    color: #2e7d32;
     border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* ==========================
-   ESTRUTURA DAS TELAS
+   PAINEL DE STATUS
 ========================== */
-.tela {
-    display: none;
-    max-width: 800px;
-    margin: 20px auto;
-    animation: abrirTela 0.3s ease-in-out;
-}
-
-.tela.ativa {
-    display: block;
-}
-
-@keyframes abrirTela {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ==========================
-   MENU PRINCIPAL (FUNDO ISOLADO COM A IMAGEM)
-========================== */
-#menu {
-    text-align: center;
-    padding: 40px 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    
-    /* Configuração blindada da imagem de fundo */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('fazenda.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: center center !important;
-    background-size: cover !important;
-    margin-top: 20px; 
-}
-
-.fazenda-logo {
-    display: block;
-    margin: 0 auto 15px auto;
-}
-
-.emoji-principal {
-    font-size: calc(var(--tamanho-base) * 3); /* Cresce junto com o zoom */
-    display: inline-block;
-    animation: balancar 4s ease-in-out infinite alternate;
-}
-
-@keyframes balancar {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-#menu h1 {
-    font-size: calc(var(--tamanho-base) * 2.2); /* Cresce junto com o zoom */
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-}
-
-#menu p {
-    font-size: calc(var(--tamanho-base) * 1.15); /* Cresce junto com o zoom */
-    margin-bottom: 35px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-}
-
-.botoes-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-}
-
-/* ==========================
-   BOTÕES GERAIS
-========================== */
-button {
-    border: none;
-    cursor: pointer;
-    padding: 14px 24px;
-    border-radius: 12px;
-    font-size: var(--tamanho-base); /* Vinculado ao zoom */
-    transition: 0.2s;
-    background: white;
-    color: #2e7d32;
-    font-weight: bold;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-}
-
-button:hover, button:active {
-    transform: scale(1.02);
-    background: #f5f5f5;
-}
-
-/* ==========================
-   TUTORIAL E APRENDIZADO
-========================== */
-#tutorial, #aprendizado {
-    background: rgba(0, 0, 0, 0.25);
-    padding: 25px;
-    border-radius: 15px;
-    text-align: left;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.1);
-    font-size: var(--tamanho-base); /* Vinculado ao zoom */
-}
-
-#tutorial h2, #aprendizado h2 {
-    margin-bottom: 20px;
-    font-size: calc(var(--tamanho-base) * 1.5); /* Vinculado ao zoom */
-    text-align: center;
-}
-
-#tutorial p, #aprendizado p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.bloco-conteudo {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.bloco-conteudo h3 {
-    margin-bottom: 8px;
-    font-size: calc(var(--tamanho-base) * 1.2); /* Vinculado ao zoom */
-    color: #fff;
-}
-
-#tutorial ul {
-    margin: 15px 0;
-    padding-left: 20px;
-}
-
-#tutorial li {
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-/* ==========================
-   PAINEL DE JOGO E MAPA
-========================== */
-header h2 {
-    font-size: calc(var(--tamanho-base) * 1.3);
-    margin-bottom: 15px;
-}
-
 .painel {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
 }
 
 .indicador {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-    font-size: var(--tamanho-base);
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
 }
 
 .indicador p {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     font-weight: bold;
 }
 
 .indicador span {
     display: block;
-    margin-top: 4px;
-    font-weight: bold;
-    text-align: right;
+    margin-top: 8px;
+    font-size: 1.1rem;
 }
 
+/* ==========================
+   BARRAS DE PROGRESSO
+========================== */
 progress {
     width: 100%;
-    height: 16px;
+    height: 25px;
 }
 
 progress::-webkit-progress-bar {
-    background: #e0e0e0;
-    border-radius: 8px;
+    background: #ddd;
+    border-radius: 20px;
 }
 
 progress::-webkit-progress-value {
-    background: #4cd137;
-    border-radius: 8px;
+    background: #66ff66;
+    border-radius: 20px;
 }
 
+/* ==========================
+   MAPA DO JOGO
+========================== */
 .fazenda {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
 .area {
-    min-height: 90px;
+    min-height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: var(--tamanho-base);
+    font-size: 1.2rem;
     font-weight: bold;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.18);
-    padding: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 15px;
+    background: rgba(255,255,255,0.15);
+    transition: 0.4s;
 }
 
+/* ==========================
+   EVENTOS
+========================== */
 .evento {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 15px;
+    background: rgba(255,255,255,0.12);
+    padding: 30px;
+    border-radius: 20px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.05);
-    font-size: var(--tamanho-base);
 }
 
 .evento h3 {
-    margin-bottom: 10px;
-    font-size: calc(var(--tamanho-base) * 1.25);
+    margin-bottom: 15px;
+    font-size: 1.7rem;
 }
 
 .evento p {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     line-height: 1.5;
 }
 
 .opcoes {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+}
+
+.opcoes button {
+    width: 100%;
 }
 
 /* ==========================
@@ -298,78 +257,104 @@ progress::-webkit-progress-value {
 ========================== */
 #fim {
     text-align: center;
-    font-size: var(--tamanho-base);
+    max-width: 800px;
+    margin: auto;
 }
 
 #fim h2 {
-    font-size: calc(var(--tamanho-base) * 1.6);
+    margin-bottom: 20px;
+}
+
+#fim p {
     margin-bottom: 10px;
 }
 
 .relatorio {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 12px;
-    margin: 20px 0;
-    text-align: left;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.relatorio p {
-    margin-bottom: 8px;
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 15px;
+    margin: 25px 0;
 }
 
 /* ==========================
-   TEMAS COORDENADOS (MODOS DE COR)
+   MODO ESCURO SEGURO
 ========================== */
-
-/* MODO NOTURNO SEGURO: A imagem do menu continua visível */
 .dark-mode {
-    background: linear-gradient(135deg, #111, #222) !important;
-}
-.dark-mode .indicador, .dark-mode .evento, .dark-mode .area, .dark-mode .relatorio, .dark-mode #tutorial, .dark-mode #aprendizado, .dark-mode .bloco-conteudo {
-    background: rgba(255, 255, 255, 0.05) !important;
-}
-.dark-mode button {
-    background: #333 !important;
-    color: #fff !important;
-}
-/* Mantém a imagem no menu, aplicando apenas um filtro noturno confortável por cima */
-.dark-mode #menu {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), url('fazenda.png') !important;
+    background: linear-gradient(135deg, #111, #222);
 }
 
-/* ALTO CONTRASTE (Regra oficial: Fundo preto absoluto e letras amarelas para leitura impecável) */
+.dark-mode .indicador,
+.dark-mode .evento,
+.dark-mode .area,
+.dark-mode .relatorio {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode button {
+    background: #444;
+    color: white;
+}
+
+/* BLINDAGEM DO MOTO NOTURNO: A fazenda.png NÃO SOME, apenas escurece como se fosse noite */
+.dark-mode #menu {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('fazenda.png') !important;
+}
+
+/* ==========================
+   ALTO CONTRASTE SEGURO
+========================== */
 .alto-contraste {
     background: black !important;
     color: yellow !important;
 }
-.alto-contraste .indicador, .alto-contraste .evento, .alto-contraste .area, .alto-contraste .relatorio, .alto-contraste #tutorial, .alto-contraste #aprendizado, .alto-contraste .bloco-conteudo {
-    background: #000 !important;
-    border: 2px solid yellow !important;
-    color: yellow !important;
+
+.alto-contraste .indicador,
+.alto-contraste .evento,
+.alto-contraste .area,
+.alto-contraste .relatorio {
+    background: #222 !important;
+    border: 1px solid yellow;
 }
-.alto-contraste h1, .alto-contraste h2, .alto-contraste h3, .alto-contraste p, .alto-contraste li, .alto-contraste span {
-    color: yellow !important;
-}
+
 .alto-contraste button {
     background: yellow !important;
     color: black !important;
 }
+
+/* No alto contraste, removemos a imagem para cumprir as regras rígidas de legibilidade visual */
 .alto-contraste #menu {
-    background-image: none !important; /* Remove imagens para focar 100% na legibilidade exigida em bancas */
+    background-image: none !important;
     background: black !important;
-    border: 2px solid yellow !important;
+    border: 2px solid yellow;
 }
 
 /* ==========================
-   RESPONSIVIDADE (TELAS LARGAS)
+   RESPONSIVIDADE
 ========================== */
-@media(min-width: 600px) {
-    .botoes-menu { flex-direction: row; max-width: 100%; justify-content: center; }
-    .botoes-menu button { width: auto; }
-    .painel { grid-template-columns: repeat(2, 1fr); }
-    .area { min-height: 120px; }
-    .opcoes { flex-direction: row; justify-content: center; }
-    .opcoes button { width: auto; }
+@media(max-width:768px){
+    #menu h1{
+        font-size:2rem;
+    }
+
+    button{
+        width:100%;
+    }
+
+    .evento h3{
+        font-size:1.3rem;
+    }
+
+    .fazenda{
+        grid-template-columns:1fr;
+    }
+
+    .acessibilidade-fixa {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    body {
+        padding: 20px;
+    }
 }
