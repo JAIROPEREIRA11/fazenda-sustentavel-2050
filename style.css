@@ -1,6 +1,3 @@
-/* ==========================================
-   RESET E CONFIGURAÇÕES BASE
-========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,13 +9,10 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;
-    padding: 80px 15px 20px 15px; /* Espaço superior para não cobrir os botões de acessibilidade */
+    padding: 80px 15px 20px 15px;
     transition: 0.4s;
 }
 
-/* ==========================================
-   BARRA DE ACESSIBILIDADE (FIXA NO TOPO)
-========================================== */
 .barra-acessibilidade {
     position: fixed;
     top: 0;
@@ -46,9 +40,6 @@ body {
     border-radius: 50%;
 }
 
-/* ==========================================
-   GERENCIAMENTO DE TELAS
-========================================== */
 .tela {
     display: none;
     max-width: 800px;
@@ -65,9 +56,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================================
-   MENU PRINCIPAL E LOGO
-========================================== */
 #menu {
     text-align: center;
     padding: 20px 0;
@@ -76,7 +64,6 @@ body {
 .fazenda-logo {
     display: block;
     margin: 0 auto 15px auto;
-    text-align: center;
 }
 
 .emoji-principal {
@@ -93,7 +80,6 @@ body {
 #menu h1 {
     font-size: 2.2rem;
     margin-bottom: 15px;
-    line-height: 1.2;
 }
 
 #menu p {
@@ -110,9 +96,6 @@ body {
     margin: 0 auto;
 }
 
-/* ==========================================
-   ESTILIZAÇÃO DE BOTÕES COMPATÍVEL COM CELULAR
-========================================== */
 button {
     border: none;
     cursor: pointer;
@@ -123,7 +106,7 @@ button {
     background: white;
     color: #2e7d32;
     font-weight: bold;
-    width: 100%; /* Botões ocupam largura total no celular por padrão */
+    width: 100%;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -132,54 +115,55 @@ button:hover, button:active {
     background: #f5f5f5;
 }
 
-/* ==========================================
-   TUTORIAL E APRENDIZADO
-========================================== */
+/* ESTILIZAÇÃO DO CONTEÚDO PEDIDO */
 #tutorial, #aprendizado {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 15px;
-}
-
-#tutorial h2, #aprendizado h2 {
-    margin: 15px 0;
-    font-size: 1.5rem;
-}
-
-#tutorial p, #aprendizado p {
-    margin-bottom: 12px;
-    line-height: 1.5;
-}
-
-#tutorial ul, #aprendizado ul {
-    margin: 15px 0;
-    padding-left: 20px;
     text-align: left;
 }
 
-#tutorial li, #aprendizado li {
-    margin-bottom: 8px;
-    line-height: 1.4;
+#tutorial h2, #aprendizado h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
-/* ==========================================
-   CABECALHO DO JOGO
-========================================== */
+#tutorial p, #aprendizado p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.bloco-conteudo {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.bloco-conteudo h3 {
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+    color: #fff;
+}
+
+#tutorial ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+#tutorial li {
+    margin-bottom: 8px;
+}
+
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-header h2 {
-    font-size: 1.6rem;
-}
-
-/* ==========================================
-   PAINEL DE PROGRESSO
-========================================== */
 .painel {
     display: grid;
-    grid-template-columns: 1fr; /* 1 Coluna no Mobile */
+    grid-template-columns: 1fr;
     gap: 12px;
     margin-bottom: 20px;
 }
@@ -193,13 +177,11 @@ header h2 {
 .indicador p {
     margin-bottom: 6px;
     font-weight: bold;
-    font-size: 0.95rem;
 }
 
 .indicador span {
     display: block;
     margin-top: 4px;
-    font-size: 1rem;
     font-weight: bold;
     text-align: right;
 }
@@ -207,7 +189,6 @@ header h2 {
 progress {
     width: 100%;
     height: 16px;
-    display: block;
 }
 
 progress::-webkit-progress-bar {
@@ -220,12 +201,9 @@ progress::-webkit-progress-value {
     border-radius: 8px;
 }
 
-/* ==========================================
-   MAPA DINÂMICO DA FAZENDA
-========================================== */
 .fazenda {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Mantém em 2x2 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -243,9 +221,6 @@ progress::-webkit-progress-value {
     padding: 5px;
 }
 
-/* ==========================================
-   CAIXA DE EVENTOS E OPÇÕES
-========================================== */
 .evento {
     background: rgba(255, 255, 255, 0.12);
     padding: 20px;
@@ -255,12 +230,10 @@ progress::-webkit-progress-value {
 
 .evento h3 {
     margin-bottom: 10px;
-    font-size: 1.3rem;
 }
 
 .evento p {
     margin-bottom: 20px;
-    font-size: 0.95rem;
     line-height: 1.4;
 }
 
@@ -270,9 +243,6 @@ progress::-webkit-progress-value {
     gap: 10px;
 }
 
-/* ==========================
-   TELA FINAL E RELATÓRIO
-========================== */
 #fim {
     text-align: center;
 }
@@ -285,90 +255,36 @@ progress::-webkit-progress-value {
     text-align: left;
 }
 
-.relatorio p {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-/* ==========================
-   MODO ESCURO
-========================== */
+/* CORES DOS MODOS COORDENADOS */
 .dark-mode {
     background: linear-gradient(135deg, #111, #222) !important;
 }
-
-.dark-mode .indicador,
-.dark-mode .evento,
-.dark-mode .area,
-.dark-mode .relatorio,
-.dark-mode #tutorial,
-.dark-mode #aprendizado {
+.dark-mode .indicador, .dark-mode .evento, .dark-mode .area, .dark-mode .relatorio, .dark-mode #tutorial, .dark-mode #aprendizado, .dark-mode .bloco-conteudo {
     background: rgba(255, 255, 255, 0.06);
 }
-
 .dark-mode button {
     background: #333;
     color: #fff;
 }
 
-/* ==========================
-   ALTO CONTRASTE (EXIGÊNCIA EDITAL)
-========================== */
 .alto-contraste {
     background: black !important;
     color: yellow !important;
 }
-
-.alto-contraste .indicador,
-.alto-contraste .evento,
-.alto-contraste .area,
-.alto-contraste .relatorio,
-.alto-contraste #tutorial,
-.alto-contraste #aprendizado {
+.alto-contraste .indicador, .alto-contraste .evento, .alto-contraste .area, .alto-contraste .relatorio, .alto-contraste #tutorial, .alto-contraste #aprendizado, .alto-contraste .bloco-conteudo {
     background: #111 !important;
     border: 2px solid yellow;
 }
-
 .alto-contraste button {
     background: yellow !important;
     color: black !important;
-    border: 2px solid white;
 }
 
-.alto-contraste progress::-webkit-progress-bar {
-    background: black;
-    border: 1px solid yellow;
-}
-.alto-contraste progress::-webkit-progress-value {
-    background: yellow;
-}
-
-/* ==========================================
-   MEDIA QUERIES (PARA COMPUTADORES/TELAS MAIORES)
-========================================== */
 @media(min-width: 600px) {
-    body {
-        padding: 90px 20px 20px 20px;
-    }
-    #menu h1 {
-        font-size: 3rem;
-    }
-    .botoes-menu {
-        flex-direction: row;
-        max-width: 100%;
-        justify-content: center;
-    }
-    .botoes-menu button {
-        width: auto;
-    }
-    .painel {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .area {
-        min-height: 120px;
-        font-size: 1.1rem;
-    }
-    .evento h3 {
-        font-size: 1.6rem;
-    }
+    body { padding: 90px 20px 20px 20px; }
+    #menu h1 { font-size: 3rem; }
+    .botoes-menu { flex-direction: row; max-width: 100%; justify-content: center; }
+    .botoes-menu button { width: auto; }
+    .painel { grid-template-columns: repeat(2, 1fr); }
+    .area { min-height: 120px; }
 }
