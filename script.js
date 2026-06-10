@@ -8,7 +8,7 @@ let qualidade = 50;
 let ano = 1;
 
 let energiaSolar = 0;
-let tamanhoFonte = 16; 
+let tamanhoFonte = 16; // Valor numérico base inicial em pixels
 
 // ======================
 // ELEMENTOS PRINCIPAIS
@@ -86,7 +86,7 @@ if (btnVoltarMenu) {
 }
 
 // ======================
-// CONTROLES DE ACESSIBILIDADE
+// CONTROLES DE ACESSIBILIDADE (ZOOM CORRIGIDO)
 // ======================
 document.getElementById("modoEscuro").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
@@ -97,10 +97,9 @@ document.getElementById("altoContraste").addEventListener("click", () => {
 });
 
 document.getElementById("zoomMais").addEventListener("click", () => {
-    if (tamanhoFonte < 28) {
+    if (tamanhoFonte < 26) {
         tamanhoFonte += 2;
         document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
-        document.body.style.fontSize = tamanhoFonte + "px";
     }
 });
 
@@ -108,7 +107,6 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
     if (tamanhoFonte > 12) {
         tamanhoFonte -= 2;
         document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
-        document.body.style.fontSize = tamanhoFonte + "px";
     }
 });
 
@@ -139,7 +137,7 @@ const eventos = [
         descricao: "Deseja investir no sistema de captação solar da fazenda?",
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
-            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economy: -5, economia: -5, ambiente: 10, qualidade: 5 } },
             { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
@@ -156,9 +154,9 @@ const eventos = [
         titulo: "A população de abelhas locais sumiu.",
         descricao: "A falta de polinização está derrubando os frutos.",
         opcoes: [
-            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economy: -5, economia: -5, ambiente: 15, qualidade: 5 } },
-            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economy: -15, economia: -15, ambiente: -5, qualidade: 0 } },
-            { texto: "Não fazer nada", efeitos: { producao: -12, economy: -5, economia: -5, ambiente: -10, qualidade: -5 } }
+            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economia: -5, ambiente: 15, qualidade: 5 } },
+            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economia: -15, ambiente: -5, qualidade: 0 } },
+            { texto: "Não fazer nada", efeitos: { producao: -12, economia: -5, ambiente: -10, qualidade: -5 } }
         ]
     }
 ];
@@ -206,7 +204,7 @@ function t_escolha(opcao) {
     }
 
     producao = Math.max(0, Math.min(100, producao));
-    economia = Math.max(0, Math.min(100, economy || economia));
+    economia = Math.max(0, Math.min(100, economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
     qualidade = Math.max(0, Math.min(100, qualidade));
 
