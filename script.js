@@ -66,6 +66,8 @@ document.getElementById("btnJogar").addEventListener("click", () => {
     }
     menu.classList.remove("ativa");
     jogo.classList.add("ativa");
+    ano = 1; // Garante que começa no ano 1
+    if (anoSpan) anoSpan.textContent = ano;
     carregarEvento();
     atualizarMapa();
     atualizarPainel();
@@ -101,16 +103,17 @@ if (btnVoltarMenu) {
 if (btnAvancarAno) {
     btnAvancarAno.addEventListener("click", () => {
         if (somClique) { somClique.currentTime = 0; somClique.play().catch(() => {}); }
+        
         transicaoAno.classList.remove("ativa");
         
-        ano++;
-        if (anoSpan) anoSpan.textContent = ano;
-
+        ano++; // Avança o ano aqui com segurança
+        
         if (ano > 10) {
             processarFimDoJogo();
         } else {
-            jogo.classList.add("ativa");
-            carregarEvento();
+            if (anoSpan) anoSpan.textContent = ano;
+            jogo.classList.add("ativa"); // Volta para a tela do jogo ativo
+            carregarEvento(); // Carrega a nova pergunta obrigatoriamente
         }
     });
 }
@@ -141,12 +144,12 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
 });
 
 // ======================
-// BANCO DE EVENTOS (CORRIGIDO!)
+// BANCO DE EVENTOS
 // ======================
 const eventos = [
     {
         titulo: "Uma praga atingiu a plantação.",
-        descricao: "Como deseja resolver o problem?",
+        descricao: "Como deseja resolver o problema?",
         opcoes: [
             { texto: "Aplicar agrotóxico químico", efeitos: { producao: 15, economia: 10, ambiente: -20, qualidade: -5 } },
             { texto: "Controle biológico natural", efeitos: { producao: 8, economia: -5, ambiente: 10, qualidade: 5 } },
@@ -167,7 +170,7 @@ const eventos = [
         descricao: "Deseja investir no sistema de captação solar da fazenda?",
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
-            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } }, // Corrigido aqui!
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
             { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
@@ -177,7 +180,7 @@ const eventos = [
         opcoes: [
             { texto: "Recuperar mata ciliar protetora", efeitos: { producao: 0, economia: -5, ambiente: 15, qualidade: 10 } },
             { texto: "Construir reservatório artificial", efeitos: { producao: 5, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economia: 0, ambiente: -15, qualidade: -10 } }
+            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economy: 0, economia: 0, ambiente: -15, qualidade: -10 } }
         ]
     },
     {
@@ -204,6 +207,7 @@ function formatarTextoBotao(opcao) {
 function carregarEvento() {
     if (!opcao1 || !opcao2 || !opcao3) return;
     
+    // Sorteia um evento aleatório do nosso banco
     const evento = eventos[Math.floor(Math.random() * eventos.length)];
 
     tituloEvento.textContent = evento.titulo;
@@ -212,6 +216,11 @@ function carregarEvento() {
     opcao1.textContent = formatarTextoBotao(evento.opcoes[0]);
     opcao2.textContent = formatarTextoBotao(evento.opcoes[1]);
     opcao3.textContent = formatarTextoBotao(evento.opcoes[2]);
+
+    // Reseta as ações de clique para evitar acumular funções antigas travadas
+    opcao1.onclick = null;
+    opcao2.onclick = null;
+    opcao3.onclick = null;
 
     opcao1.onclick = () => t_escolha(evento.opcoes[0]);
     opcao2.onclick = () => t_escolha(evento.opcoes[1]);
@@ -234,7 +243,7 @@ function t_escolha(opcao) {
     }
 
     producao = Math.max(0, Math.min(100, producao));
-    economia = Math.max(0, Math.min(100, economia));
+    economia = Math.max(0, Math.min(100, economy || economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
     qualidade = Math.max(0, Math.min(100, qualidade));
 
@@ -269,7 +278,7 @@ function verificarRodada() {
         return;
     }
 
-    // 2. Transição normal de fim de ano
+    // 2. Transição normal de fim de ano (Sucesso parcial)
     jogo.classList.remove("ativa");
     transicaoAno.classList.add("ativa");
     
