@@ -1,6 +1,10 @@
 /* ==========================
-   RESET E CONFIGURAÇÃO BASE
+   CONFIGURAÇÃO DE ACESSIBILIDADE DINÂMICA
 ========================== */
+:root {
+    --tamanho-base: 16px; /* Controlado diretamente pelo JavaScript */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,12 +13,12 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px; /* Tamanho base inicial */
+    font-size: var(--tamanho-base); /* Vinculado ao sistema de zoom universal */
     min-height: 100vh;
     background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;
-    padding: 90px 15px 20px 15px;
-    transition: background 0.4s ease;
+    padding: 100px 15px 20px 15px;
+    transition: background 0.4s ease, font-size 0.2s ease;
 }
 
 /* ==========================
@@ -25,7 +29,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
@@ -38,7 +42,7 @@ body {
     width: 45px;
     height: 45px;
     padding: 0;
-    font-size: 16px;
+    font-size: 16px !important; /* Mantém estável a barra superior */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +75,7 @@ body {
 }
 
 /* ==========================
-   MENU PRINCIPAL (COM IMAGEM DE FUNDO)
+   MENU PRINCIPAL (FUNDO ISOLADO COM A IMAGEM)
 ========================== */
 #menu {
     text-align: center;
@@ -79,10 +83,11 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     
-    /* Mistura de degradê escuro protetor + a sua imagem fazenda.png */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-                url('fazenda.png') no-repeat center center;
-    background-size: cover;
+    /* Configuração blindada da imagem de fundo */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('fazenda.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
     margin-top: 20px; 
 }
 
@@ -92,7 +97,7 @@ body {
 }
 
 .emoji-principal {
-    font-size: 70px;
+    font-size: calc(var(--tamanho-base) * 3); /* Cresce junto com o zoom */
     display: inline-block;
     animation: balancar 4s ease-in-out infinite alternate;
 }
@@ -103,13 +108,13 @@ body {
 }
 
 #menu h1 {
-    font-size: 36px;
+    font-size: calc(var(--tamanho-base) * 2.2); /* Cresce junto com o zoom */
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 #menu p {
-    font-size: 18px;
+    font-size: calc(var(--tamanho-base) * 1.15); /* Cresce junto com o zoom */
     margin-bottom: 35px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
@@ -131,7 +136,7 @@ button {
     cursor: pointer;
     padding: 14px 24px;
     border-radius: 12px;
-    font-size: 16px;
+    font-size: var(--tamanho-base); /* Vinculado ao zoom */
     transition: 0.2s;
     background: white;
     color: #2e7d32;
@@ -149,17 +154,18 @@ button:hover, button:active {
    TUTORIAL E APRENDIZADO
 ========================== */
 #tutorial, #aprendizado {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
     padding: 25px;
     border-radius: 15px;
     text-align: left;
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,0.1);
+    font-size: var(--tamanho-base); /* Vinculado ao zoom */
 }
 
 #tutorial h2, #aprendizado h2 {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: calc(var(--tamanho-base) * 1.5); /* Vinculado ao zoom */
     text-align: center;
 }
 
@@ -177,7 +183,7 @@ button:hover, button:active {
 
 .bloco-conteudo h3 {
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: calc(var(--tamanho-base) * 1.2); /* Vinculado ao zoom */
     color: #fff;
 }
 
@@ -191,16 +197,12 @@ button:hover, button:active {
     line-height: 1.4;
 }
 
-#tutorial button, #aprendizado button {
-    margin-top: 15px;
-}
-
 /* ==========================
    PAINEL DE JOGO E MAPA
 ========================== */
-header {
-    text-align: center;
-    margin-bottom: 20px;
+header h2 {
+    font-size: calc(var(--tamanho-base) * 1.3);
+    margin-bottom: 15px;
 }
 
 .painel {
@@ -215,6 +217,7 @@ header {
     padding: 12px;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.05);
+    font-size: var(--tamanho-base);
 }
 
 .indicador p {
@@ -257,7 +260,7 @@ progress::-webkit-progress-value {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 16px;
+    font-size: var(--tamanho-base);
     font-weight: bold;
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.18);
@@ -271,10 +274,12 @@ progress::-webkit-progress-value {
     border-radius: 15px;
     text-align: center;
     border: 1px solid rgba(255,255,255,0.05);
+    font-size: var(--tamanho-base);
 }
 
 .evento h3 {
     margin-bottom: 10px;
+    font-size: calc(var(--tamanho-base) * 1.25);
 }
 
 .evento p {
@@ -293,6 +298,12 @@ progress::-webkit-progress-value {
 ========================== */
 #fim {
     text-align: center;
+    font-size: var(--tamanho-base);
+}
+
+#fim h2 {
+    font-size: calc(var(--tamanho-base) * 1.6);
+    margin-bottom: 10px;
 }
 
 .relatorio {
@@ -306,37 +317,35 @@ progress::-webkit-progress-value {
 
 .relatorio p {
     margin-bottom: 8px;
-    font-size: 18px;
 }
 
 /* ==========================
-   TEMAS COORDENADOS (ACESSIBILIDADE)
+   TEMAS COORDENADOS (MODOS DE COR)
 ========================== */
 
-/* CORREÇÃO DO MODO ESCURO: MANTÉM A IMAGEM DE FUNDO DO MENU */
+/* MODO NOTURNO SEGURO: A imagem do menu continua visível */
 .dark-mode {
     background: linear-gradient(135deg, #111, #222) !important;
 }
 .dark-mode .indicador, .dark-mode .evento, .dark-mode .area, .dark-mode .relatorio, .dark-mode #tutorial, .dark-mode #aprendizado, .dark-mode .bloco-conteudo {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 .dark-mode button {
     background: #333 !important;
     color: #fff !important;
 }
-/* Força a imagem a continuar aparecendo no modo escuro, mas com uma camada protetora mais escura */
+/* Mantém a imagem no menu, aplicando apenas um filtro noturno confortável por cima */
 .dark-mode #menu {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
-                url('fazenda.png') no-repeat center center !important;
-    background-size: cover !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), url('fazenda.png') !important;
 }
 
+/* ALTO CONTRASTE (Regra oficial: Fundo preto absoluto e letras amarelas para leitura impecável) */
 .alto-contraste {
     background: black !important;
     color: yellow !important;
 }
 .alto-contraste .indicador, .alto-contraste .evento, .alto-contraste .area, .alto-contraste .relatorio, .alto-contraste #tutorial, .alto-contraste #aprendizado, .alto-contraste .bloco-conteudo {
-    background: #111 !important;
+    background: #000 !important;
     border: 2px solid yellow !important;
     color: yellow !important;
 }
@@ -348,15 +357,15 @@ progress::-webkit-progress-value {
     color: black !important;
 }
 .alto-contraste #menu {
+    background-image: none !important; /* Remove imagens para focar 100% na legibilidade exigida em bancas */
     background: black !important;
     border: 2px solid yellow !important;
 }
 
 /* ==========================
-   RESPONSIVIDADE (TELAS MAIORES)
+   RESPONSIVIDADE (TELAS LARGAS)
 ========================== */
 @media(min-width: 600px) {
-    body { padding: 100px 20px 20px 20px; }
     .botoes-menu { flex-direction: row; max-width: 100%; justify-content: center; }
     .botoes-menu button { width: auto; }
     .painel { grid-template-columns: repeat(2, 1fr); }

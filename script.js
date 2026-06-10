@@ -8,7 +8,7 @@ let qualidade = 50;
 let ano = 1;
 
 let energiaSolar = 0;
-let tamanhoFonte = 16; // Tamanho base em pixels
+let tamanhoFonte = 16; // Tamanho base inicial em pixels
 
 // ======================
 // ELEMENTOS PRINCIPAIS
@@ -90,27 +90,18 @@ document.getElementById("altoContraste").addEventListener("click", () => {
     document.body.classList.toggle("alto-contraste");
 });
 
-// CORREÇÃO DO ZOOM: Altera o tamanho diretamente na tag body afetando todos os elementos
+// NOVO SISTEMA DE ZOOM GLOBAL: Altera a variável base do CSS afetando TODAS as telas instantaneamente
 document.getElementById("zoomMais").addEventListener("click", () => {
-    if (tamanhoFonte < 26) {
+    if (tamanhoFonte < 28) {
         tamanhoFonte += 2;
-        document.body.style.fontSize = tamanhoFonte + "px";
-        
-        // Aplica também em botões e inputs para garantir acessibilidade integral
-        document.querySelectorAll("button").forEach(btn => {
-            btn.style.fontSize = tamanhoFonte + "px";
-        });
+        document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
     }
 });
 
 document.getElementById("zoomMenos").addEventListener("click", () => {
     if (tamanhoFonte > 12) {
         tamanhoFonte -= 2;
-        document.body.style.fontSize = tamanhoFonte + "px";
-        
-        document.querySelectorAll("button").forEach(btn => {
-            btn.style.fontSize = tamanhoFonte + "px";
-        });
+        document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
     }
 });
 
@@ -142,7 +133,7 @@ const eventos = [
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
             { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
-            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economy: 0, ambiente: -5, qualidade: 0 } }
+            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
     {
@@ -241,7 +232,7 @@ function verificarFim() {
             finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
         } else {
             if (somDerrota) somDerrota.play().catch(() => {});
-            finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
+            finalizarJogo("⚠️ Alerta! Development Insustentável.");
         }
         return;
     }
