@@ -8,7 +8,7 @@ let qualidade = 50;
 let ano = 1;
 
 let energiaSolar = 0;
-let tamanhoFonte = 16;
+let tamanhoFonte = 16; // Tamanho base em pixels
 
 // ======================
 // ELEMENTOS PRINCIPAIS
@@ -49,7 +49,7 @@ const somVitoria = document.getElementById("somVitoria");
 const somDerrota = document.getElementById("somDerrota");
 
 // ======================
-// NAVEGAÇÃO DE TELAS CORRIGIDA
+// NAVEGAÇÃO DE TELAS
 // ======================
 document.getElementById("btnJogar").addEventListener("click", () => {
     menu.classList.remove("ativa");
@@ -69,7 +69,6 @@ document.getElementById("voltarMenu").addEventListener("click", () => {
     menu.classList.add("ativa");
 });
 
-// Abertura e Fechamento da Tela Aprendizado (Botão Novo funcionando!)
 document.getElementById("btnAprender").addEventListener("click", () => {
     menu.classList.remove("ativa");
     aprendizado.classList.add("ativa");
@@ -91,20 +90,21 @@ document.getElementById("altoContraste").addEventListener("click", () => {
     document.body.classList.toggle("alto-contraste");
 });
 
+// Correção do sistema de Zoom aumentando a raiz do HTML
 document.getElementById("zoomMais").addEventListener("click", () => {
     tamanhoFonte += 2;
-    document.body.style.fontSize = tamanhoFonte + "px";
+    if (tamanhoFonte > 26) tamanhoFonte = 26; // Limite máximo para não quebrar o layout
+    document.documentElement.style.fontSize = tamanhoFonte + "px";
 });
 
 document.getElementById("zoomMenos").addEventListener("click", () => {
-    if (tamanhoFonte > 12) {
-        tamanhoFonte -= 2;
-        document.body.style.fontSize = tamanhoFonte + "px";
-    }
+    tamanhoFonte -= 2;
+    if (tamanhoFonte < 12) tamanhoFonte = 12; // Limite mínimo de legibilidade
+    document.documentElement.style.fontSize = tamanhoFonte + "px";
 });
 
 // ======================
-// BANCO DE EVENTOS DO JOGO
+// BANCO DE EVENTOS
 // ======================
 const eventos = [
     {
@@ -121,7 +121,7 @@ const eventos = [
         descricao: "Qual será sua estratégia?",
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economy: -5, ambiente: -10, qualidade: 0 } },
             { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },

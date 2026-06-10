@@ -1,33 +1,35 @@
+/* ==========================
+   RESET E CONFIGURAÇÃO BASE
+========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px; /* Essencial para o funcionamento correto do Zoom */
+    transition: font-size 0.2s ease;
+}
 
-/* ==========================
-   BODY (COM IMAGEM DE FUNDO)
-========================== */
 body {
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
-    
-    /* Camada verde/preta transparente + a imagem fazenda.png */
-    background: linear-gradient(rgba(46, 125, 50, 0.88), rgba(17, 17, 17, 0.92)), 
-                url('fazenda.png') no-repeat center center fixed;
-                
-    background-size: cover; /* Faz a imagem cobrir a tela inteira */
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;
-    padding: 80px 15px 20px 15px;
-    transition: 0.4s;
+    padding: 90px 15px 20px 15px;
+    transition: background 0.4s ease;
 }
 
+/* ==========================
+   BARRA DE ACESSIBILIDADE FIXA
+========================== */
 .barra-acessibilidade {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
@@ -47,8 +49,15 @@ body {
     background: white;
     color: #2e7d32;
     border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
+/* ==========================
+   ESTRUTURA DAS TELAS
+========================== */
 .tela {
     display: none;
     max-width: 800px;
@@ -65,9 +74,20 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ==========================
+   MENU PRINCIPAL (COM IMAGEM DE FUNDO)
+========================== */
 #menu {
     text-align: center;
-    padding: 20px 0;
+    padding: 40px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    /* Mistura de degradê escuro protetor + a sua imagem fazenda.png */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), 
+                url('fazenda.png') no-repeat center center;
+    background-size: cover;
+    margin-top: 20px; 
 }
 
 .fazenda-logo {
@@ -87,13 +107,15 @@ body {
 }
 
 #menu h1 {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 #menu p {
     font-size: 1.1rem;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
 .botoes-menu {
@@ -105,6 +127,9 @@ body {
     margin: 0 auto;
 }
 
+/* ==========================
+   BOTÕES GERAIS
+========================== */
 button {
     border: none;
     cursor: pointer;
@@ -116,7 +141,7 @@ button {
     color: #2e7d32;
     font-weight: bold;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
 button:hover, button:active {
@@ -124,23 +149,27 @@ button:hover, button:active {
     background: #f5f5f5;
 }
 
-/* ESTILIZAÇÃO DO CONTEÚDO PEDIDO */
+/* ==========================
+   TUTORIAL E APRENDIZADO
+========================== */
 #tutorial, #aprendizado {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px;
     border-radius: 15px;
     text-align: left;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 #tutorial h2, #aprendizado h2 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
     text-align: center;
 }
 
 #tutorial p, #aprendizado p {
     margin-bottom: 15px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .bloco-conteudo {
@@ -152,7 +181,7 @@ button:hover, button:active {
 
 .bloco-conteudo h3 {
     margin-bottom: 8px;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #fff;
 }
 
@@ -162,9 +191,17 @@ button:hover, button:active {
 }
 
 #tutorial li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    line-height: 1.4;
 }
 
+#tutorial button, #aprendizado button {
+    margin-top: 15px;
+}
+
+/* ==========================
+   PAINEL DE JOGO E MAPA
+========================== */
 header {
     text-align: center;
     margin-bottom: 20px;
@@ -178,9 +215,10 @@ header {
 }
 
 .indicador {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
     padding: 12px;
     border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .indicador p {
@@ -226,15 +264,17 @@ progress::-webkit-progress-value {
     font-size: 1rem;
     font-weight: bold;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 5px;
+    background: rgba(0, 0, 0, 0.18);
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .evento {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 15px;
     text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .evento h3 {
@@ -243,7 +283,7 @@ progress::-webkit-progress-value {
 
 .evento p {
     margin-bottom: 20px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .opcoes {
@@ -252,28 +292,43 @@ progress::-webkit-progress-value {
     gap: 10px;
 }
 
+/* ==========================
+   TELA FINAL
+========================== */
 #fim {
     text-align: center;
 }
 
 .relatorio {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 12px;
     margin: 20px 0;
     text-align: left;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* CORES DOS MODOS COORDENADOS */
+.relatorio p {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+/* ==========================
+   TEMAS COORDENADOS (ACESSIBILIDADE)
+========================== */
 .dark-mode {
     background: linear-gradient(135deg, #111, #222) !important;
 }
 .dark-mode .indicador, .dark-mode .evento, .dark-mode .area, .dark-mode .relatorio, .dark-mode #tutorial, .dark-mode #aprendizado, .dark-mode .bloco-conteudo {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.06) !important;
 }
 .dark-mode button {
-    background: #333;
-    color: #fff;
+    background: #333 !important;
+    color: #fff !important;
+}
+.dark-mode #menu {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('fazenda.png') no-repeat center center !important;
+    background-size: cover !important;
 }
 
 .alto-contraste {
@@ -282,18 +337,32 @@ progress::-webkit-progress-value {
 }
 .alto-contraste .indicador, .alto-contraste .evento, .alto-contraste .area, .alto-contraste .relatorio, .alto-contraste #tutorial, .alto-contraste #aprendizado, .alto-contraste .bloco-conteudo {
     background: #111 !important;
-    border: 2px solid yellow;
+    border: 2px solid yellow !important;
+    color: yellow !important;
+}
+.alto-contraste h1, .alto-contraste h2, .alto-contraste h3, .alto-contraste p, .alto-contraste li, .alto-contraste span {
+    color: yellow !important;
 }
 .alto-contraste button {
     background: yellow !important;
     color: black !important;
 }
+/* No alto contraste removemos a imagem de fundo para priorizar a leitura absoluta */
+.alto-contraste #menu {
+    background: black !important;
+    border: 2px solid yellow !important;
+}
 
+/* ==========================
+   RESPONSIVIDADE (TELAS MAIORES)
+========================== */
 @media(min-width: 600px) {
-    body { padding: 90px 20px 20px 20px; }
+    body { padding: 100px 20px 20px 20px; }
     #menu h1 { font-size: 3rem; }
     .botoes-menu { flex-direction: row; max-width: 100%; justify-content: center; }
     .botoes-menu button { width: auto; }
     .painel { grid-template-columns: repeat(2, 1fr); }
     .area { min-height: 120px; }
+    .opcoes { flex-direction: row; justify-content: center; }
+    .opcoes button { width: auto; }
 }
