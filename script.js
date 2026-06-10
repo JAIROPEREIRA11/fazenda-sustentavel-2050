@@ -8,7 +8,7 @@ let qualidade = 50;
 let ano = 1;
 
 let energiaSolar = 0;
-let tamanhoFonte = 16; // Tamanho base inicial em pixels
+let tamanhoFonte = 16; 
 
 // ======================
 // ELEMENTOS PRINCIPAIS
@@ -69,7 +69,6 @@ document.getElementById("voltarMenu").addEventListener("click", () => {
     menu.classList.add("ativa");
 });
 
-// Suporte para botões extras caso existam no HTML, sem quebrar o script
 const btnAprender = document.getElementById("btnAprender");
 if (btnAprender) {
     btnAprender.addEventListener("click", () => {
@@ -94,8 +93,6 @@ document.getElementById("modoEscuro").addEventListener("click", () => {
 });
 
 document.getElementById("altoContraste").addEventListener("click", () => {
-    document.body.classList.toggle("alto-contrast");
-    // Caso use a classe alternativa do CSS anterior
     document.body.classList.toggle("alto-contraste");
 });
 
@@ -134,7 +131,7 @@ const eventos = [
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
             { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
-            { texto: "Não investir", efeitos: { producao: -20, economy: -10, economia: -10, ambiente: 0, qualidade: -5 } }
+            { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
     {
@@ -159,14 +156,13 @@ const eventos = [
         titulo: "A população de abelhas locais sumiu.",
         descricao: "A falta de polinização está derrubando os frutos.",
         opcoes: [
-            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economia: -5, ambiente: 15, qualidade: 5 } },
-            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economia: -15, ambiente: -5, qualidade: 0 } },
-            { texto: "Não fazer nada", efeitos: { producao: -12, economia: -5, ambiente: -10, qualidade: -5 } }
+            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economy: -5, economia: -5, ambiente: 15, qualidade: 5 } },
+            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economy: -15, economia: -15, ambiente: -5, qualidade: 0 } },
+            { texto: "Não fazer nada", efeitos: { producao: -12, economy: -5, economia: -5, ambiente: -10, qualidade: -5 } }
         ]
     }
 ];
 
-// Função auxiliar para criar o texto de ajuda com os custos/ganhos de cada botão
 function formatarTextoBotao(opcao) {
     let dicas = [];
     if (opcao.efeitos.producao) dicas.push(`🌾${opcao.efeitos.producao > 0 ? '+' : ''}${opcao.efeitos.producao}`);
@@ -178,12 +174,13 @@ function formatarTextoBotao(opcao) {
 }
 
 function carregarEvento() {
+    if (!opcao1 || !opcao2 || !opcao3) return;
+    
     const evento = eventos[Math.floor(Math.random() * eventos.length)];
 
     tituloEvento.textContent = evento.titulo;
     descricaoEvento.textContent = evento.descricao;
 
-    // Exibe o texto original juntamente com os impactos financeiros e ecológicos detalhados
     opcao1.textContent = formatarTextoBotao(evento.opcoes[0]);
     opcao2.textContent = formatarTextoBotao(evento.opcoes[1]);
     opcao3.textContent = formatarTextoBotao(evento.opcoes[2]);
@@ -209,7 +206,7 @@ function t_escolha(opcao) {
     }
 
     producao = Math.max(0, Math.min(100, producao));
-    economia = Math.max(0, Math.min(100, economia));
+    economia = Math.max(0, Math.min(100, economy || economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
     qualidade = Math.max(0, Math.min(100, qualidade));
 
@@ -218,15 +215,15 @@ function t_escolha(opcao) {
 }
 
 function atualizarPainel() {
-    barraProducao.value = producao;
-    barraEconomia.value = economia;
-    barraAmbiente.value = ambiente;
-    barraQualidade.value = qualidade;
+    if(barraProducao) barraProducao.value = producao;
+    if(barraEconomia) barraEconomia.value = economia;
+    if(barraAmbiente) barraAmbiente.value = ambiente;
+    if(barraQualidade) barraQualidade.value = qualidade;
 
-    valorProducao.textContent = producao;
-    valorEconomia.textContent = economia;
-    valorAmbiente.textContent = ambiente;
-    valorQualidade.textContent = qualidade;
+    if(valorProducao) valorProducao.textContent = producao;
+    if(valorEconomia) valorEconomia.textContent = economia;
+    if(valorAmbiente) valorAmbiente.textContent = ambiente;
+    if(valorQualidade) valorQualidade.textContent = qualidade;
 
     atualizarMapa();
 }
@@ -263,14 +260,21 @@ function verificarFim() {
 }
 
 function finalizarJogo(resultado) {
-    jogo.classList.remove("ativa");
-    fim.classList.add("ativa");
+    if(jogo) jogo.classList.remove("ativa");
+    if(fim) fim.classList.add("ativa");
 
-    document.getElementById("resultadoTitulo").textContent = resultado;
-    document.getElementById("finalProducao").textContent = producao;
-    document.getElementById("finalEconomia").textContent = economia;
-    document.getElementById("finalAmbiente").textContent = ambiente;
-    document.getElementById("finalQualidade").textContent = qualidade;
+    const resTitulo = document.getElementById("resultadoTitulo");
+    if (resTitulo) resTitulo.textContent = resultado;
+    
+    const fProd = document.getElementById("finalProducao");
+    const fEcon = document.getElementById("finalEconomia");
+    const fAmb = document.getElementById("finalAmbiente");
+    const fQual = document.getElementById("finalQualidade");
+    
+    if(fProd) fProd.textContent = producao;
+    if(fEcon) fEcon.textContent = economia;
+    if(fAmb) fAmb.textContent = ambiente;
+    if(fQual) fQual.textContent = qualidade;
 }
 
 function atualizarMapa() {
