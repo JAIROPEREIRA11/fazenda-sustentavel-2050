@@ -8,7 +8,7 @@ let qualidade = 50;
 let ano = 1;
 
 let energiaSolar = 0;
-let tamanhoFonte = 16; // Valor numérico base inicial em pixels
+let tamanhoFonte = 16; 
 
 // ======================
 // ELEMENTOS PRINCIPAIS
@@ -17,6 +17,7 @@ const menu = document.getElementById("menu");
 const tutorial = document.getElementById("tutorial");
 const aprendizado = document.getElementById("aprendizado");
 const jogo = document.getElementById("jogo");
+const transicaoAno = document.getElementById("transicao-ano");
 const fim = document.getElementById("fim");
 
 const anoSpan = document.getElementById("ano");
@@ -47,6 +48,13 @@ const somClique = document.getElementById("somClique");
 const musicaAmbiente = document.getElementById("musicaAmbiente");
 const somVitoria = document.getElementById("somVitoria");
 const somDerrota = document.getElementById("somDerrota");
+
+// Elementos da tela de transição de ano
+const btnAvancarAno = document.getElementById("btnAvancarAno");
+const statusProd = document.getElementById("statusProd");
+const statusEcon = document.getElementById("statusEcon");
+const statusAmb = document.getElementById("statusAmb");
+const statusQual = document.getElementById("statusQual");
 
 // ======================
 // NAVEGAÇÃO DE TELAS
@@ -85,8 +93,26 @@ if (btnVoltarMenu) {
     });
 }
 
+// Botão para avançar a partir da tela de transição de ano concluído
+if (btnAvancarAno) {
+    btnAvancarAno.addEventListener("click", () => {
+        if (somClique) { somClique.currentTime = 0; somClique.play().catch(() => {}); }
+        transicaoAno.classList.remove("ativa");
+        
+        ano++;
+        if (anoSpan) anoSpan.textContent = ano;
+
+        if (ano > 10) {
+            processarFimDoJogo();
+        } else {
+            jogo.classList.add("ativa");
+            carregarEvento();
+        }
+    });
+}
+
 // ======================
-// CONTROLES DE ACESSIBILIDADE (ZOOM CORRIGIDO)
+// CONTROLES DE ACESSIBILIDADE
 // ======================
 document.getElementById("modoEscuro").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
@@ -137,7 +163,7 @@ const eventos = [
         descricao: "Deseja investir no sistema de captação solar da fazenda?",
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
-            { texto: "Instalar parcialmente", efeitos: { producao: 3, economy: -5, economia: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
             { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
@@ -209,7 +235,7 @@ function t_escolha(opcao) {
     qualidade = Math.max(0, Math.min(100, qualidade));
 
     atualizarPainel();
-    verificarFim();
+    verificarRodada();
 }
 
 function atualizarPainel() {
@@ -226,7 +252,8 @@ function atualizarPainel() {
     atualizarMapa();
 }
 
-function verificarFim() {
+function verificarRodada() {
+    // 1. Condição de colapso (Derrota)
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
         if (somDerrota) somDerrota.play().catch(() => {});
@@ -234,31 +261,50 @@ function verificarFim() {
         return;
     }
 
-    ano++;
-    if (anoSpan) anoSpan.textContent = ano;
-
-    if (ano > 10) {
-        if (musicaAmbiente) musicaAmbiente.pause();
-        const media = (producao + economia + ambiente + qualidade) / 4;
-
-        if (media >= 80) {
-            if (somVitoria) somVitoria.play().catch(() => {});
-            finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
-        } else if (media >= 55) {
-            if (somVitoria) somVitoria.play().catch(() => {});
-            finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
-        } else {
-            if (somDerrota) somDerrota.play().catch(() => {});
-            finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
-        }
-        return;
+    // 2. TOQUE FINAL DE SOM: O ano foi concluído com sucesso! 
+    // Pausa o clique e toca o som de vitória/sucesso da rodada
+    if (somVitoria) {
+        somVitoria.currentTime = 0;
+        somVitoria.play().catch(() => {});
     }
 
-    carregarEvento();
+    jogo.classList.remove("ativa");
+    transicaoAno.classList.add("ativa");
+    
+    // Atualiza os status na tela de transição
+    if(statusProd) statusProd.textContent = producao;
+    if(statusEcon) statusEcon.textContent = economia;
+    if(statusAmb) statusAmb.textContent = ambiente;
+    if(statusQual) statusQual.textContent = qualidade;
+    
+    if(btnAvancarAno) {
+        if(ano === 10) {
+            btnAvancarAno.textContent = "Ver Resultado Final da Jornada ➔";
+        } else {
+            btnAvancarAno.textContent = `Avançar para o Ano ${ano + 1} ➔`;
+        }
+    }
+}
+
+function processarFimDoJogo() {
+    if (musicaAmbiente) musicaAmbiente.pause();
+    const media = (producao + economia + ambiente + qualidade) / 4;
+
+    if (media >= 80) {
+        if (somVitoria) somVitoria.play().catch(() => {});
+        finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
+    } else if (media >= 55) {
+        if (somVitoria) somVitoria.play().catch(() => {});
+        finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
+    } else {
+        if (somDerrota) somDerrota.play().catch(() => {});
+        finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
+    }
 }
 
 function finalizarJogo(resultado) {
     if(jogo) jogo.classList.remove("ativa");
+    if(transicaoAno) transicaoAno.classList.remove("ativa");
     if(fim) fim.classList.add("ativa");
 
     const resTitulo = document.getElementById("resultadoTitulo");
