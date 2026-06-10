@@ -60,6 +60,11 @@ const statusQual = document.getElementById("statusQual");
 // NAVEGAÇÃO DE TELAS
 // ======================
 document.getElementById("btnJogar").addEventListener("click", () => {
+    // Inicia a música de fundo após o primeiro clique do usuário (exigência do navegador)
+    if (musicaAmbiente) {
+        musicaAmbiente.volume = 0.4;
+        musicaAmbiente.play().catch(() => {});
+    }
     menu.classList.remove("ativa");
     jogo.classList.add("ativa");
     carregarEvento();
@@ -154,7 +159,7 @@ const eventos = [
         descricao: "Qual será sua estratégia?",
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economy: -5, economia: -5, ambiente: -10, qualidade: 0 } },
             { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
@@ -253,25 +258,22 @@ function atualizarPainel() {
 }
 
 function verificarRodada() {
-    // 1. Condição de colapso (Derrota)
+    // 1. Condição de colapso (Derrota imediata)
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
-        if (somDerrota) somDerrota.play().catch(() => {});
+        if (somDerrota) {
+            somDerrota.currentTime = 0;
+            somDerrota.volume = 1.0;
+            somDerrota.play().catch(() => {});
+        }
         finalizarJogo("💀 Sua fazenda entrou em colapso devido a escolhas insustentáveis.");
         return;
     }
 
-    // 2. TOQUE FINAL DE SOM: O ano foi concluído com sucesso! 
-    // Pausa o clique e toca o som de vitória/sucesso da rodada
-    if (somVitoria) {
-        somVitoria.currentTime = 0;
-        somVitoria.play().catch(() => {});
-    }
-
+    // 2. Transição normal de fim de ano
     jogo.classList.remove("ativa");
     transicaoAno.classList.add("ativa");
     
-    // Atualiza os status na tela de transição
     if(statusProd) statusProd.textContent = producao;
     if(statusEcon) statusEcon.textContent = economia;
     if(statusAmb) statusAmb.textContent = ambiente;
@@ -290,14 +292,24 @@ function processarFimDoJogo() {
     if (musicaAmbiente) musicaAmbiente.pause();
     const media = (producao + economia + ambiente + qualidade) / 4;
 
-    if (media >= 80) {
-        if (somVitoria) somVitoria.play().catch(() => {});
-        finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
-    } else if (media >= 55) {
-        if (somVitoria) somVitoria.play().catch(() => {});
-        finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
+    // Força o play do som de vitória/derrota com volume máximo após ação direta do clique do usuário
+    if (media >= 55) {
+        if (somVitoria) {
+            somVitoria.currentTime = 0;
+            somVitoria.volume = 1.0;
+            somVitoria.play().catch((e) => console.log("Erro somVitoria:", e));
+        }
+        if (media >= 80) {
+            finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
+        } else {
+            finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
+        }
     } else {
-        if (somDerrota) somDerrota.play().catch(() => {});
+        if (somDerrota) {
+            somDerrota.currentTime = 0;
+            somDerrota.volume = 1.0;
+            somDerrota.play().catch((e) => console.log("Erro somDerrota:", e));
+        }
         finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
     }
 }
