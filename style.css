@@ -4,10 +4,17 @@
     box-sizing: border-box;
 }
 
+/* ==========================
+   BODY (COM IMAGEM DE FUNDO ESPETACULAR)
+========================== */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
-    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    /* Criamos um degradê escuro em cima da imagem para garantir o contraste do texto */
+    background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(17, 17, 17, 0.9)), 
+                url('fazenda.png') no-repeat center center fixed;
+    background-size: cover; /* Faz a imagem cobrir a tela inteira sem distorcer */
     color: white;
     padding: 80px 15px 20px 15px;
     transition: 0.4s;
