@@ -1,306 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>🚜 Fazenda Sustentável 2050</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚜 Fazenda Sustentável 2050</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- MENU -->
- <div class="fazenda-logo">
-    <span class="emoji-grande">🚜</span>
-    <span class="emoji-pequeno">🐝</span>
-    <span class="emoji-pequeno">🌱</span>
-</div>
-<section id="menu" class="tela ativa">
-
-    <h1>🚜 Fazenda Sustentável 2050</h1>
-
-    <p>
-        Construa uma fazenda produtiva sem destruir o meio ambiente.
-    </p>
-
-    <div class="botoes-menu">
-        <button id="btnJogar">Jogar</button>
-        <button id="btnTutorial">Como Funciona</button>
+    <div class="barra-acessibilidade">
+        <button id="zoomMais" title="Aumentar Fonte">A+</button>
+        <button id="zoomMenos" title="Diminuir Fonte">A-</button>
+        <button id="altoContraste" title="Alto Contraste">👁️</button>
+        <button id="modoEscuro" title="Modo Escuro">🌙</button>
+        <button id="btnMusica" title="Música de Fundo">🎵</button>
     </div>
 
-</section>
-
-<!-- TUTORIAL -->
-<section id="tutorial" class="tela">
-
-    <h2>📖 Como Funciona</h2>
-
-    <p>
-        Você é o gestor de uma fazenda sustentável no ano de 2050.
-    </p>
-
-    <p>
-        Seu objetivo é produzir alimentos, gerar renda e preservar o meio ambiente.
-    </p>
-
-    <p>
-        Durante 10 anos você enfrentará desafios reais do campo.
-    </p>
-
-    <ul>
-        <li>🌾 Produção Agrícola</li>
-        <li>💰 Economia da Fazenda</li>
-        <li>🌳 Meio Ambiente</li>
-        <li>😊 Qualidade de Vida</li>
-    </ul>
-
-    <p>
-        Cada decisão afeta os indicadores.
-    </p>
-
-    <p>
-        Se algum deles chegar a zero, a fazenda entra em colapso.
-    </p>
-
-    <h2>🌱 O que é uma Fazenda Sustentável?</h2>
-
-    <ul>
-        <li>💧 Uso consciente da água</li>
-        <li>🌳 Preservação das florestas</li>
-        <li>☀️ Uso de energia limpa</li>
-        <li>🐝 Proteção da biodiversidade</li>
-        <li>👨‍🌾 Valorização das pessoas</li>
-    </ul>
-
-    <button id="voltarMenu">
-        Voltar ao Menu
-    </button>
-
-</section>
-
-<div class="botoes-menu">
-    <button id=\"btnJogar\">Jogar</button>
-    <button id=\"btnAprender\">O que a Fazenda Precisa</button> <button id=\"btnTutorial\">Como Funciona</button>
-</div>
-
-<section id="aprendizado" class="tela">
-    <h2>🐝 O que uma Fazenda Sustentável Precisa?</h2>
-    <p>
-        Para atingir o equilíbrio em 2050, o manejo moderno exige ir além da simples produção. Uma fazenda do futuro precisa de:
-    </p>
-    <ul>
-        <li><strong>Proteger as Abelhas:</strong> Elas são as maiores responsáveis pela polinização das culturas. Sem abelhas, a produtividade cai e os frutos perdem qualidade. Reduzir defensivos químicos pesados protege esses insetos vitais.</li>
-        <li><strong>Biodiversidade e Solo Vivo:</strong> Manter áreas de mata nativa (reflorestamento) e usar compostagem orgânica enriquece o solo naturalmente.</li>
-        <li><strong>Energia Limpa:</strong> Substituir combustíveis fósseis por energia solar diminui a pegada de carbono da propriedade.</li>
-    </ul>
-    <button id="btnVoltarMenu">Voltar ao Menu</button>
-</section>
-
-<!-- JOGO -->
-<section id="jogo" class="tela">
-
-    <header>
-
-        <h2>
-            Ano <span id="ano">1</span> / 10
-        </h2>
-
-        <div class="acessibilidade">
-
-            <button id="zoomMais">A+</button>
-
-            <button id="zoomMenos">A-</button>
-
-            <button id="altoContraste">🎨</button>
-
-            <button id="modoEscuro">🌙</button>
-
-            <button id="btnMusica">🎵</button>
-
+    <section id="menu" class="tela ativa">
+        <div class="fazenda-logo">
+            <span class="emoji-principal">🚜</span>
         </div>
-
-    </header>
-
-    <!-- PAINEL -->
-    <section class="painel">
-
-        <div class="indicador">
-
-            <p>🌾 Produção</p>
-
-            <progress
-                id="barraProducao"
-                value="50"
-                max="100">
-            </progress>
-
-            <span id="valorProducao">50</span>
-
+        <h1>Fazenda Sustentável 2050</h1>
+        <p>Construa uma fazenda produtiva sem destruir o meio ambiente.</p>
+        <div class="botoes-menu">
+            <button id="btnJogar">Jogar</button>
+            <button id="btnAprender">O que a Fazenda Precisa</button>
+            <button id="btnTutorial">Como Funciona</button>
         </div>
-
-        <div class="indicador">
-
-            <p>💰 Economia</p>
-
-            <progress
-                id="barraEconomia"
-                value="50"
-                max="100">
-            </progress>
-
-            <span id="valorEconomia">50</span>
-
-        </div>
-
-        <div class="indicador">
-
-            <p>🌳 Meio Ambiente</p>
-
-            <progress
-                id="barraAmbiente"
-                value="50"
-                max="100">
-            </progress>
-
-            <span id="valorAmbiente">50</span>
-
-        </div>
-
-        <div class="indicador">
-
-            <p>😊 Qualidade de Vida</p>
-
-            <progress
-                id="barraQualidade"
-                value="50"
-                max="100">
-            </progress>
-
-            <span id="valorQualidade">50</span>
-
-        </div>
-
     </section>
 
-    <!-- MAPA -->
-    <section class="fazenda">
-
-        <div id="lavoura" class="area">
-            🌱 Produção Inicial
-        </div>
-
-        <div id="rio" class="area">
-            💧 Rio Saudável
-        </div>
-
-        <div id="floresta" class="area">
-            🌳 Floresta Preservada
-        </div>
-
-        <div id="energia" class="area">
-            ⚡ Energia Convencional
-        </div>
-
+    <section id="tutorial" class="tela">
+        <h2>📖 Como Funciona</h2>
+        <p>Você é o gestor de uma fazenda sustentável no ano de 2050.</p>
+        <p>Seu objetivo é produzir alimentos, gerar renda e preservar o meio ambiente.</p>
+        <p>Durante 10 anos você enfrentará desafios reais do campo.</p>
+        <ul>
+            <li>🌾 Produção Agrícola</li>
+            <li>💰 Economia da Fazenda</li>
+            <li>🌳 Meio Ambiente</li>
+            <li>😊 Qualidade de Vida</li>
+        </ul>
+        <p>Cada decisão afeta os indicadores. Se algum deles chegar a zero, a fazenda entra em colapso.</p>
+        
+        <h2>🌱 Diretrizes de Sustentabilidade</h2>
+        <ul>
+            <li>💧 Uso consciente da água</li>
+            <li>🌳 Preservação das florestas</li>
+            <li>☀️ Uso de energia limpa</li>
+            <li>🐝 Proteção da biodiversidade</li>
+            <li>👨‍🌾 Valorização das pessoas</li>
+        </ul>
+        <button id="voltarMenu">Voltar ao Menu</button>
     </section>
 
-    <!-- EVENTO -->
-    <section class="evento">
-
-        <h3 id="tituloEvento">
-            Evento
-        </h3>
-
-        <p id="descricaoEvento">
-            Descrição do evento.
-        </p>
-
-        <div class="opcoes">
-
-            <button id="opcao1">
-                Opção 1
-            </button>
-
-            <button id="opcao2">
-                Opção 2
-            </button>
-
-            <button id="opcao3">
-                Opção 3
-            </button>
-
-        </div>
-
+    <section id="aprendizado" class="tela">
+        <h2>🐝 O que uma Fazenda Sustentável Precisa?</h2>
+        <p>Para atingir o equilíbrio em 2050, o manejo moderno exige ir além da simples produção. Uma fazenda do futuro precisa de:</p>
+        <ul>
+            <li><strong>Proteger as Abelhas:</strong> Elas são as maiores responsáveis pela polinização das culturas. Sem abelhas, a produtividade cai e os frutos perdem qualidade. Reduzir defensivos químicos pesados protege esses insetos vitais.</li>
+            <li><strong>Biodiversidade e Solo Vivo:</strong> Manter áreas de mata nativa (reflorestamento) e usar compostagem orgânica enriquece o solo naturalmente.</li>
+            <li><strong>Energia Limpa:</strong> Substituir combustíveis fósseis por energia solar diminui a pegada de carbono da propriedade.</li>
+        </ul>
+        <button id="btnVoltarMenu">Voltar ao Menu</button>
     </section>
 
-</section>
+    <section id="jogo" class="tela">
+        <header>
+            <h2>Ano <span id="ano">1</span> / 10</h2>
+        </header>
 
-<!-- FINAL -->
-<section id="fim" class="tela">
+        <section class="painel">
+            <div class="indicador">
+                <p>🌾 Produção</p>
+                <progress id="barraProducao" value="50" max="100"></progress>
+                <span id="valorProducao">50</span>
+            </div>
+            <div class="indicador">
+                <p>💰 Economia</p>
+                <progress id="barraEconomia" value="50" max="100"></progress>
+                <span id="valorEconomia">50</span>
+            </div>
+            <div class="indicador">
+                <p>🌳 Meio Ambiente</p>
+                <progress id="barraAmbiente" value="50" max="100"></progress>
+                <span id="valorAmbiente">50</span>
+            </div>
+            <div class="indicador">
+                <p>😊 Qualidade de Vida</p>
+                <progress id="barraQualidade" value="50" max="100"></progress>
+                <span id="valorQualidade">50</span>
+            </div>
+        </section>
 
-    <h2 id="resultadoTitulo">
-        Resultado Final
-    </h2>
+        <section class="fazenda">
+            <div id="lavoura" class="area">🌱 Produção Inicial</div>
+            <div id="rio" class="area">💧 Rio Saudável</div>
+            <div id="floresta" class="area">🌳 Floresta Preservada</div>
+            <div id="energia" class="area">⚡ Energia Convencional</div>
+        </section>
 
-    <p>
-        Sua jornada terminou.
-    </p>
+        <section class="evento">
+            <h3 id="tituloEvento">Evento</h3>
+            <p id="descricaoEvento">Descrição do evento.</p>
+            <div class="opcoes">
+                <button id="opcao1">Opção 1</button>
+                <button id="opcao2">Opção 2</button>
+                <button id="opcao3">Opção 3</button>
+            </div>
+        </section>
+    </section>
 
-    <div class="relatorio">
+    <section id="fim" class="tela">
+        <h2 id="resultadoTitulo">Resultado Final</h2>
+        <p>Sua jornada terminou.</p>
+        <div class="relatorio">
+            <p>🌾 Produção: <span id="finalProducao"></span></p>
+            <p>💰 Economia: <span id="finalEconomia"></span></p>
+            <p>🌳 Meio Ambiente: <span id="finalAmbiente"></span></p>
+            <p>😊 Qualidade de Vida: <span id="finalQualidade"></span></p>
+        </div>
+        <button onclick="location.reload()">Jogar Novamente</button>
+    </section>
 
-        <p>
-            🌾 Produção:
-            <span id="finalProducao"></span>
-        </p>
+    <audio id="somClique" src="assets/sons/clique.mp3"></audio>
+    <audio id="musicaAmbiente" src="assets/sons/ambiente.mp3" loop></audio>
+    <audio id="somVitoria" src="assets/sons/vitoria.mp3"></audio>
+    <audio id="somDerrota" src="assets/sons/derrota.mp3"></audio>
 
-        <p>
-            💰 Economia:
-            <span id="finalEconomia"></span>
-        </p>
-
-        <p>
-            🌳 Meio Ambiente:
-            <span id="finalAmbiente"></span>
-        </p>
-
-        <p>
-            😊 Qualidade de Vida:
-            <span id="finalQualidade"></span>
-        </p>
-
-    </div>
-
-    <button onclick="location.reload()">
-        Jogar Novamente
-    </button>
-
-</section>
-
-<!-- ÁUDIOS -->
-
-<audio
-id="somClique"
-src="assets/sons/clique.mp3">
-</audio>
-
-<audio
-id="musicaAmbiente"
-src="assets/sons/ambiente.mp3"
-loop>
-</audio>
-
-<audio
-id="somVitoria"
-src="assets/sons/vitoria.mp3">
-</audio>
-
-<audio
-id="somDerrota"
-src="assets/sons/derrota.mp3">
-</audio>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,25 +1,21 @@
 // ======================
 // VARIÁVEIS DO JOGO
 // ======================
-
 let producao = 50;
 let economia = 50;
 let ambiente = 50;
 let qualidade = 50;
-
 let ano = 1;
 
 let energiaSolar = 0;
-let irrigacao = 0;
-let reflorestamento = 0;
-let compostagem = 0;
+let tamanhoFonte = 16;
 
 // ======================
-// ELEMENTOS
+// ELEMENTOS PRINCIPAIS
 // ======================
-
 const menu = document.getElementById("menu");
 const tutorial = document.getElementById("tutorial");
+const aprendizado = document.getElementById("aprendizado");
 const jogo = document.getElementById("jogo");
 const fim = document.getElementById("fim");
 
@@ -42,32 +38,23 @@ const opcao1 = document.getElementById("opcao1");
 const opcao2 = document.getElementById("opcao2");
 const opcao3 = document.getElementById("opcao3");
 
-// ======================
-// MAPA DA FAZENDA
-// ======================
-
 const lavoura = document.getElementById("lavoura");
 const rio = document.getElementById("rio");
 const floresta = document.getElementById("floresta");
 const energia = document.getElementById("energia");
 
-// SOM
+// ELEMENTOS DE ÁUDIO
 const somClique = document.getElementById("somClique");
 const musicaAmbiente = document.getElementById("musicaAmbiente");
 const somVitoria = document.getElementById("somVitoria");
 const somDerrota = document.getElementById("somDerrota");
 
-// ACESSIBILIDADE
-let tamanhoFonte = 16;
-
 // ======================
-// MENU
+// NAVEGAÇÃO ENTRE TELAS
 // ======================
-
 document.getElementById("btnJogar").addEventListener("click", () => {
     menu.classList.remove("ativa");
     jogo.classList.add("ativa");
-
     carregarEvento();
     atualizarMapa();
     atualizarPainel();
@@ -83,169 +70,100 @@ document.getElementById("voltarMenu").addEventListener("click", () => {
     menu.classList.add("ativa");
 });
 
-// ======================
-// MODO ESCURO
-// ======================
+// Nova Tela: Aprendizado
+const btnAprender = document.getElementById("btnAprender");
+const btnVoltarMenu = document.getElementById("btnVoltarMenu");
 
+if (btnAprender) {
+    btnAprender.addEventListener("click", () => {
+        menu.classList.remove("ativa");
+        aprendizado.classList.add("ativa");
+    });
+}
+if (btnVoltarMenu) {
+    btnVoltarMenu.addEventListener("click", () => {
+        aprendizado.classList.remove("ativa");
+        menu.classList.add("ativa");
+    });
+}
+
+// ======================
+// CONTROLES DE ACESSIBILIDADE
+// ======================
 document.getElementById("modoEscuro").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
 
-// ======================
-// EVENTOS
-// ======================
+document.getElementById("altoContraste").addEventListener("click", () => {
+    document.body.classList.toggle("alto-contrast");
+    // Garante compatibilidade caso mude o nome da classe no CSS
+    document.body.classList.toggle("alto-contraste"); 
+});
 
+document.getElementById("zoomMais").addEventListener("click", () => {
+    tamanhoFonte += 2;
+    document.body.style.fontSize = tamanhoFonte + "px";
+});
+
+document.getElementById("zoomMenos").addEventListener("click", () => {
+    if (tamanhoFonte > 12) {
+        tamanhoFonte -= 2;
+        document.body.style.fontSize = tamanhoFonte + "px";
+    }
+});
+
+// BANCO DE EVENTOS
 const eventos = [
     {
         titulo: "Uma praga atingiu a plantação.",
         descricao: "Como deseja resolver o problema?",
         opcoes: [
-            {
-                texto: "Aplicar agrotóxico",
-                efeitos: { producao: 15, economia: 10, ambiente: -20, qualidade: -5 }
-            },
-            {
-                texto: "Controle biológico",
-                efeitos: { producao: 8, economia: -5, ambiente: 10, qualidade: 5 }
-            },
-            {
-                texto: "Não fazer nada",
-                efeitos: { producao: -15, economia: -10, ambiente: 5, qualidade: 0 }
-            }
+            { texto: "Aplicar agrotóxico", efeitos: { producao: 15, economia: 10, ambiente: -20, qualidade: -5 } },
+            { texto: "Controle biológico", efeitos: { producao: 8, economia: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Não fazer nada", efeitos: { producao: -15, economia: -10, ambiente: 5, qualidade: 0 } }
         ]
     },
     {
         titulo: "Uma seca severa está chegando.",
         descricao: "Qual será sua estratégia?",
         opcoes: [
-            {
-                texto: "Investir em irrigação inteligente",
-                efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 }
-            },
-            {
-                texto: "Abrir poço emergencial",
-                efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 }
-            },
-            {
-                texto: "Não investir",
-                efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 }
-            }
+            { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
+            { texto: "Abrir poço emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Não investir", efeitos: { producao: -20, economy: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
     {
         titulo: "Programa de energia solar.",
         descricao: "Deseja investir no sistema de energia da fazenda?",
         opcoes: [
-            {
-                texto: "Instalar/Ampliar painéis solares",
-                efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 }
-            },
-            {
-                texto: "Instalar parcialmente",
-                efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 }
-            },
-            {
-                texto: "Recusar",
-                efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 }
-            }
+            { texto: "Instalar painéis solares", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Recusar", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
     {
-        titulo: "Uma nascente da propriedade está perdendo vazão.",
+        titulo: "Uma nascente está perdendo vazão.",
         descricao: "Como deseja agir?",
         opcoes: [
-            {
-                texto: "Recuperar mata ciliar",
-                efeitos: { producao: 0, economia: -5, ambiente: 15, qualidade: 10 }
-            },
-            {
-                texto: "Construir reservatório",
-                efeitos: { producao: 5, economia: -10, ambiente: 5, qualidade: 5 }
-            },
-            {
-                texto: "Ignorar",
-                efeitos: { producao: -5, economia: 0, ambiente: -15, qualidade: -10 }
-            }
+            { texto: "Recuperar mata ciliar", efeitos: { producao: 0, economia: -5, ambiente: 15, qualidade: 10 } },
+            { texto: "Construir reservatório", efeitos: { producao: 5, economia: -10, ambiente: 5, qualidade: 5 } },
+            { texto: "Ignorar", efeitos: { producao: -5, economia: 0, ambiente: -15, qualidade: -10 } }
         ]
     },
     {
         titulo: "A população de abelhas diminuiu.",
-        descricao: "Como resolver?",
+        descricao: "Como resolver esse problema biológico?",
         opcoes: [
-            {
-                texto: "Criar jardim para polinizadores",
-                efeitos: { producao: 10, economia: -5, ambiente: 15, qualidade: 5 }
-            },
-            {
-                texto: "Contratar polinização artificial",
-                efeitos: { producao: 8, economia: -10, ambiente: -5, qualidade: 0 }
-            },
-            {
-                texto: "Não fazer nada",
-                efeitos: { producao: -10, economia: -5, ambiente: -10, qualidade: -5 }
-            }
-        ]
-    },
-    {
-        titulo: "Há excesso de resíduos orgânicos.",
-        descricao: "O que fazer?",
-        opcoes: [
-            {
-                texto: "Criar sistema de compostagem",
-                efeitos: { producao: 10, economia: 5, ambiente: 15, qualidade: 10 }
-            },
-            {
-                texto: "Enviar para aterro",
-                efeitos: { producao: 0, economia: -5, ambiente: -10, qualidade: 0 }
-            },
-            {
-                texto: "Queimar resíduos",
-                efeitos: { producao: 0, economia: 0, ambiente: -20, qualidade: -10 }
-            }
-        ]
-    },
-    {
-        titulo: "Um drone agrícola está disponível.",
-        descricao: "Deseja utilizar a tecnologia?",
-        opcoes: [
-            {
-                texto: "Comprar drone",
-                efeitos: { producao: 15, economia: -15, ambiente: 5, qualidade: 5 }
-            },
-            {
-                texto: "Alugar drone",
-                efeitos: { producao: 10, economia: -5, ambiente: 5, qualidade: 5 }
-            },
-            {
-                texto: "Não utilizar",
-                efeitos: { producao: 0, economia: 0, ambiente: 0, qualidade: 0 }
-            }
-        ]
-    },
-    {
-        titulo: "Projeto de reflorestamento disponível.",
-        descricao: "Participar?",
-        opcoes: [
-            {
-                texto: "Reflorestar área degradada",
-                efeitos: { producao: 5, economy: -10, ambiente: 25, qualidade: 10 }
-            },
-            {
-                texto: "Reflorestar parcialmente",
-                efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 }
-            },
-            {
-                texto: "Recusar",
-                efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: -5 }
-            }
+            { texto: "Criar jardim para polinizadores", efeitos: { producao: 10, economia: -5, ambiente: 15, qualidade: 5 } },
+            { texto: "Contratar polinização artificial", efeitos: { producao: 8, economia: -10, ambiente: -5, qualidade: 0 } },
+            { texto: "Não fazer nada", efeitos: { producao: -10, economia: -5, ambiente: -10, qualidade: -5 } }
         ]
     }
 ];
 
 // ======================
-// CARREGAR EVENTO
+// MECÂNICAS DO JOGO
 // ======================
-
 function carregarEvento() {
     const evento = eventos[Math.floor(Math.random() * eventos.length)];
 
@@ -256,65 +174,37 @@ function carregarEvento() {
     opcao2.textContent = evento.opcoes[1].texto;
     opcao3.textContent = evento.opcoes[2].texto;
 
-    opcao1.onclick = () => {
-        if (somClique) {
-            somClique.currentTime = 0;
-            somClique.play();
-        }
-        aplicarEscolha(evento.opcoes[0]);
-    };
-
-    opcao2.onclick = () => {
-        if (somClique) {
-            somClique.currentTime = 0;
-            somClique.play();
-        }
-        aplicarEscolha(evento.opcoes[1]);
-    };
-
-    opcao3.onclick = () => {
-        if (somClique) {
-            somClique.currentTime = 0;
-            somClique.play();
-        }
-        aplicarEscolha(evento.opcoes[2]);
-    };
+    opcao1.onclick = () => t_escolha(evento.opcoes[0]);
+    opcao2.onclick = () => t_escolha(evento.opcoes[1]);
+    opcao3.onclick = () => t_escolha(evento.opcoes[2]);
 }
 
-// ======================
-// ESCOLHAS
-// ======================
+function t_escolha(opcao) {
+    if (somClique) {
+        somClique.currentTime = 0;
+        somClique.play().catch(() => {});
+    }
 
-function aplicarEscolha(opcao) {
-    // Tratando erro caso a propriedade venha errada do array (ex: economy vs economia)
     producao += opcao.efeitos.producao || 0;
-    economia += (opcao.efeitos.economia !== undefined ? opcao.efeitos.economia : (opcao.efeitos.economy || 0));
     ambiente += opcao.efeitos.ambiente || 0;
     qualidade += opcao.efeitos.qualidade || 0;
+    
+    // Proteção para o caso de a propriedade vir escrita como 'economy'
+    let eco = opcao.efeitos.economia !== undefined ? opcao.efeitos.economia : (opcao.efeitos.economy || 0);
+    economia += eco;
 
     if (opcao.texto.toLowerCase().includes("solar")) {
         energiaSolar++;
     }
 
-    limitarValores();
-    atualizarPainel();
-    verificarFim();
-}
-
-// ======================
-// LIMITES
-// ======================
-
-function limitarValores() {
     producao = Math.max(0, Math.min(100, producao));
     economia = Math.max(0, Math.min(100, economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
     qualidade = Math.max(0, Math.min(100, qualidade));
-}
 
-// ======================
-// ATUALIZAR
-// ======================
+    atualizarPainel();
+    verificarFim();
+}
 
 function atualizarPainel() {
     barraProducao.value = producao;
@@ -330,15 +220,11 @@ function atualizarPainel() {
     atualizarMapa();
 }
 
-// ======================
-// FIM
-// ======================
-
 function verificarFim() {
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
-        if (somDerrota) somDerrota.play();
-        finalizarJogo("💀 Sua fazenda entrou em colapso.");
+        if (somDerrota) somDerrota.play().catch(() => {});
+        finalizarJogo("💀 Sua fazenda entrou em colapso devido a escolhas insustentáveis.");
         return;
     }
 
@@ -346,19 +232,18 @@ function verificarFim() {
     if (anoSpan) anoSpan.textContent = ano;
 
     if (ano > 10) {
-        const media = (producao + economia + ambiente + qualidade) / 4;
         if (musicaAmbiente) musicaAmbiente.pause();
+        const media = (producao + economia + ambiente + qualidade) / 4;
 
         if (media >= 80) {
-            if (somVitoria) somVitoria.play();
-            document.body.style.background = "linear-gradient(135deg, #FFD700, #FFA500)";
-            finalizarJogo("🏆 Modelo de Fazenda Sustentável");
-        } else if (media >= 60) {
-            if (somVitoria) somVitoria.play();
-            finalizarJogo("🥈 Produtor Consciente");
+            if (somVitoria) somVitoria.play().catch(() => {});
+            finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
+        } else if (media >= 55) {
+            if (somVitoria) somVitoria.play().catch(() => {});
+            finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
         } else {
-            if (somDerrota) somDerrota.play();
-            finalizarJogo("⚠️ Desenvolvimento Insustentável");
+            if (somDerrota) somDerrota.play().catch(() => {});
+            finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
         }
         return;
     }
@@ -366,133 +251,42 @@ function verificarFim() {
     carregarEvento();
 }
 
-// ======================
-// TELA FINAL
-// ======================
-
 function finalizarJogo(resultado) {
     jogo.classList.remove("ativa");
     fim.classList.add("ativa");
 
     document.getElementById("resultadoTitulo").textContent = resultado;
-
     document.getElementById("finalProducao").textContent = producao;
     document.getElementById("finalEconomia").textContent = economia;
     document.getElementById("finalAmbiente").textContent = ambiente;
     document.getElementById("finalQualidade").textContent = qualidade;
 }
 
-// ======================
-// MAPA DINÂMICO
-// ======================
-
 function atualizarMapa() {
-    // FLORESTA
     if (floresta) {
-        if (ambiente >= 80) {
-            floresta.innerHTML = "🌳🌳🌳<br>Floresta Preservada";
-        } else if (ambiente >= 50) {
-            floresta.innerHTML = "🌳🌳<br>Floresta Estável";
-        } else {
-            floresta.innerHTML = "🪵<br>Área Degradada";
-        }
+        floresta.innerHTML = ambiente >= 80 ? "🌳🌳🌳<br>Mata Preservada" : (ambiente >= 50 ? "🌳🌳<br>Reserva Legal" : "🪵<br>Desmatamento");
     }
-
-    // RIO
     if (rio) {
-        if (ambiente >= 70) {
-            rio.innerHTML = "💧💧💧<br>Rio Limpo";
-        } else if (ambiente >= 40) {
-            rio.innerHTML = "💧<br>Rio Sob Pressão";
-        } else {
-            rio.innerHTML = "🟤<br>Rio Poluído";
-        }
+        rio.innerHTML = ambiente >= 70 ? "💧💧💧<br>Rio Protegido" : (ambiente >= 40 ? "💧<br>Vazão Reduzida" : "🟤<br>Nascente Secou");
     }
-
-    // LAVOURA
     if (lavoura) {
-        if (producao >= 80) {
-            lavoura.innerHTML = "🌾🌾🌾<br>Alta... Produção";
-        } else if (producao >= 50) {
-            lavoura.innerHTML = "🌾🌾<br>Boa Produção";
-        } else {
-            lavoura.innerHTML = "🌱<br>Baixa Produção";
-        }
+        lavoura.innerHTML = producao >= 80 ? "🌾🌾🌾<br>Super Safra" : (producao >= 50 ? "🌾🌾<br>Boa Colheita" : "🌱<br>Escassez");
     }
-
-    // ENERGIA
     if (energia) {
-        if (energiaSolar >= 2) {
-            energia.innerHTML = "☀️☀️☀️<br>Energia Solar Avançada";
-        } else if (energiaSolar >= 1) {
-            energia.innerHTML = "☀️⚡<br>Energia Solar";
-        } else if (economia >= 80) {
-            energia.innerHTML = "⚡⚡<br>Energia Eficiente";
-        } else {
-            energia.innerHTML = "⚡<br>Energia Padrão";
-        }
+        energia.innerHTML = energiaSolar >= 1 ? "☀️⚡<br>Matriz Renovável" : "⚡<br>Rede Convencional";
     }
 }
 
-// ======================
-// BOTÃO MÚSICA
-// ======================
-
+// Botão da música ambiente
 const btnMusica = document.getElementById("btnMusica");
 if (btnMusica) {
     btnMusica.addEventListener("click", () => {
         if (musicaAmbiente) {
             if (musicaAmbiente.paused) {
-                musicaAmbiente.play();
+                musicaAmbiente.play().catch(() => {});
             } else {
                 musicaAmbiente.pause();
             }
         }
-    });
-}
-
-// ======================
-// ZOOM
-// ======================
-
-document.getElementById("zoomMais").addEventListener("click", () => {
-    tamanhoFonte += 2;
-    document.body.style.fontSize = tamanhoFonte + "px";
-});
-
-document.getElementById("zoomMenos").addEventListener("click", () => {
-    tamanhoFonte -= 2;
-    document.body.style.fontSize = tamanhoFonte + "px";
-});
-
-// ======================
-// ALTO CONTRASTE
-// ======================
-
-document.getElementById("altoContraste").addEventListener("click", () => {
-    document.body.classList.toggle("alto-contraste");
-});
-// ==========================================
-// NOVA SEÇÃO: O QUE A FAZENDA PRECISA (SUSTENTABILIDADE)
-// ==========================================
-
-// 1. Captura os novos elementos do HTML
-const aprendizado = document.getElementById("aprendizado");
-const btnAprender = document.getElementById("btnAprender");
-const btnVoltarMenu = document.getElementById("btnVoltarMenu");
-
-// 2. Evento para abrir a tela de Aprendizado
-if (btnAprender && aprendizado && menu) {
-    btnAprender.addEventListener("click", () => {
-        menu.classList.remove("ativa");
-        aprendizado.classList.add("ativa");
-    });
-}
-
-// 3. Evento para voltar da tela de Aprendizado para o Menu
-if (btnVoltarMenu && aprendizado && menu) {
-    btnVoltarMenu.addEventListener("click", () => {
-        aprendizado.classList.remove("ativa");
-        menu.classList.add("ativa");
     });
 }

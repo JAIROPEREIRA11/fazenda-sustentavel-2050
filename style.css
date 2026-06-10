@@ -1,392 +1,374 @@
-/* ==========================
-   RESET
-========================== */
+/* ==========================================
+   RESET E CONFIGURAÇÕES BASE
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: white;
+    padding: 80px 15px 20px 15px; /* Espaço superior para não cobrir os botões de acessibilidade */
+    transition: 0.4s;
+}
+
+/* ==========================================
+   BARRA DE ACESSIBILIDADE (FIXA NO TOPO)
+========================================== */
+.barra-acessibilidade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.barra-acessibilidade button {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: #2e7d32;
+    border-radius: 50%;
+}
+
+/* ==========================================
+   GERENCIAMENTO DE TELAS
+========================================== */
+.tela {
+    display: none;
+    max-width: 800px;
+    margin: 20px auto;
+    animation: abrirTela 0.3s ease-in-out;
+}
+
+.tela.ativa {
+    display: block;
+}
+
+@keyframes abrirTela {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   MENU PRINCIPAL E LOGO
+========================================== */
+#menu {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.fazenda-logo {
+    display: block;
+    margin: 0 auto 15px auto;
+    text-align: center;
+}
+
+.emoji-principal {
+    font-size: 4.5rem;
+    display: inline-block;
+    animation: balancar 4s ease-in-out infinite alternate;
+}
+
+@keyframes balancar {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+#menu h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+#menu p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.botoes-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* ==========================================
+   ESTILIZAÇÃO DE BOTÕES COMPATÍVEL COM CELULAR
+========================================== */
+button {
+    border: none;
+    cursor: pointer;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: 0.2s;
+    background: white;
+    color: #2e7d32;
+    font-weight: bold;
+    width: 100%; /* Botões ocupam largura total no celular por padrão */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover, button:active {
+    transform: scale(1.02);
+    background: #f5f5f5;
+}
+
+/* ==========================================
+   TUTORIAL E APRENDIZADO
+========================================== */
+#tutorial, #aprendizado {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+#tutorial h2, #aprendizado h2 {
+    margin: 15px 0;
+    font-size: 1.5rem;
+}
+
+#tutorial p, #aprendizado p {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+#tutorial ul, #aprendizado ul {
+    margin: 15px 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
+#tutorial li, #aprendizado li {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   CABECALHO DO JOGO
+========================================== */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h2 {
+    font-size: 1.6rem;
+}
+
+/* ==========================================
+   PAINEL DE PROGRESSO
+========================================== */
+.painel {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 Coluna no Mobile */
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.indicador {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.indicador p {
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.indicador span {
+    display: block;
+    margin-top: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: right;
+}
+
+progress {
+    width: 100%;
+    height: 16px;
+    display: block;
+}
+
+progress::-webkit-progress-bar {
+    background: #e0e0e0;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background: #4cd137;
+    border-radius: 8px;
+}
+
+/* ==========================================
+   MAPA DINÂMICO DA FAZENDA
+========================================== */
+.fazenda {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Mantém em 2x2 */
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.area {
+    min-height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 5px;
+}
+
+/* ==========================================
+   CAIXA DE EVENTOS E OPÇÕES
+========================================== */
+.evento {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.evento h3 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.evento p {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* ==========================
-   BODY
+   TELA FINAL E RELATÓRIO
 ========================== */
-
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    min-height:100vh;
-    background:linear-gradient(135deg,#4caf50,#2e7d32);
-    color:white;
-    padding:20px;
-    transition:0.4s;
+#fim {
+    text-align: center;
 }
 
-/* ==========================
-   TELAS
-========================== */
-
-.tela{
-    display:none;
+.relatorio {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    text-align: left;
 }
 
-.tela.ativa{
-    display:block;
-}
-
-/* ==========================
-   MENU
-========================== */
-
-#menu{
-    text-align:center;
-    margin-top:100px;
-}
-
-#menu h1{
-    font-size:3rem;
-    margin-bottom:20px;
-}
-
-#menu p{
-    font-size:1.2rem;
-    margin-bottom:40px;
-}
-
-.botoes-menu{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-/* ==========================
-   BOTÕES
-========================== */
-
-button{
-    border:none;
-    cursor:pointer;
-    padding:12px 24px;
-    border-radius:12px;
-    font-size:1rem;
-    transition:0.3s;
-    background:white;
-    color:#2e7d32;
-    font-weight:bold;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-/* ==========================
-   TUTORIAL
-========================== */
-
-#tutorial{
-    max-width:900px;
-    margin:auto;
-}
-
-#tutorial h2{
-    margin:20px 0;
-}
-
-#tutorial p{
-    margin-bottom:15px;
-    line-height:1.6;
-}
-
-#tutorial ul{
-    margin:15px 0;
-    padding-left:25px;
-}
-
-#tutorial li{
-    margin-bottom:10px;
-}
-
-/* ==========================
-   CABEÇALHO
-========================== */
-
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-/* ==========================
-   ACESSIBILIDADE
-========================== */
-
-.acessibilidade{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-}
-
-#zoomMais,
-#zoomMenos,
-#altoContraste,
-#modoEscuro,
-#btnMusica{
-    width:55px;
-    height:55px;
-    font-size:1rem;
-}
-
-/* ==========================
-   PAINEL
-========================== */
-
-.painel{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    margin-bottom:25px;
-}
-
-.indicador{
-    background:rgba(255,255,255,0.15);
-    padding:15px;
-    border-radius:15px;
-    backdrop-filter:blur(5px);
-}
-
-.indicador p{
-    margin-bottom:10px;
-    font-weight:bold;
-}
-
-.indicador span{
-    display:block;
-    margin-top:8px;
-    font-size:1.1rem;
-}
-
-/* ==========================
-   BARRAS
-========================== */
-
-progress{
-    width:100%;
-    height:25px;
-}
-
-progress::-webkit-progress-bar{
-    background:#ddd;
-    border-radius:20px;
-}
-
-progress::-webkit-progress-value{
-    background:#66ff66;
-    border-radius:20px;
-}
-
-/* ==========================
-   MAPA
-========================== */
-
-.fazenda{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.area{
-    min-height:120px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    font-size:1.2rem;
-    font-weight:bold;
-
-    border-radius:15px;
-
-    background:rgba(255,255,255,0.15);
-
-    transition:0.4s;
-}
-
-/* ==========================
-   EVENTOS
-========================== */
-
-.evento{
-    background:rgba(255,255,255,0.12);
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-}
-
-.evento h3{
-    margin-bottom:15px;
-    font-size:1.7rem;
-}
-
-.evento p{
-    margin-bottom:25px;
-    line-height:1.5;
-}
-
-.opcoes{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.opcoes button{
-    width:100%;
-}
-
-/* ==========================
-   TELA FINAL
-========================== */
-
-#fim{
-    text-align:center;
-    max-width:800px;
-    margin:auto;
-}
-
-#fim h2{
-    margin-bottom:20px;
-}
-
-#fim p{
-    margin-bottom:10px;
-}
-
-.relatorio{
-    background:rgba(255,255,255,0.15);
-    padding:25px;
-    border-radius:15px;
-    margin:25px 0;
+.relatorio p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
 }
 
 /* ==========================
    MODO ESCURO
 ========================== */
-
-.dark-mode{
-    background:linear-gradient(135deg,#111,#222);
+.dark-mode {
+    background: linear-gradient(135deg, #111, #222) !important;
 }
 
 .dark-mode .indicador,
 .dark-mode .evento,
 .dark-mode .area,
-.dark-mode .relatorio{
-    background:rgba(255,255,255,0.08);
+.dark-mode .relatorio,
+.dark-mode #tutorial,
+.dark-mode #aprendizado {
+    background: rgba(255, 255, 255, 0.06);
 }
 
-.dark-mode button{
-    background:#444;
-    color:white;
+.dark-mode button {
+    background: #333;
+    color: #fff;
 }
 
 /* ==========================
-   ALTO CONTRASTE
+   ALTO CONTRASTE (EXIGÊNCIA EDITAL)
 ========================== */
-
-.alto-contraste{
-    background:black !important;
-    color:yellow !important;
+.alto-contraste {
+    background: black !important;
+    color: yellow !important;
 }
 
 .alto-contraste .indicador,
 .alto-contraste .evento,
 .alto-contraste .area,
-.alto-contraste .relatorio{
-    background:#222 !important;
+.alto-contraste .relatorio,
+.alto-contraste #tutorial,
+.alto-contraste #aprendizado {
+    background: #111 !important;
+    border: 2px solid yellow;
 }
 
-.alto-contraste button{
-    background:yellow !important;
-    color:black !important;
+.alto-contraste button {
+    background: yellow !important;
+    color: black !important;
+    border: 2px solid white;
 }
 
-/* ==========================
-   RESPONSIVIDADE
-========================== */
+.alto-contraste progress::-webkit-progress-bar {
+    background: black;
+    border: 1px solid yellow;
+}
+.alto-contraste progress::-webkit-progress-value {
+    background: yellow;
+}
 
-@media(max-width:768px){
-
-    #menu h1{
-        font-size:2rem;
+/* ==========================================
+   MEDIA QUERIES (PARA COMPUTADORES/TELAS MAIORES)
+========================================== */
+@media(min-width: 600px) {
+    body {
+        padding: 90px 20px 20px 20px;
     }
-
-    button{
-        width:100%;
+    #menu h1 {
+        font-size: 3rem;
     }
-
-    .evento h3{
-        font-size:1.3rem;
+    .botoes-menu {
+        flex-direction: row;
+        max-width: 100%;
+        justify-content: center;
     }
-
-    .fazenda{
-        grid-template-columns:1fr;
+    .botoes-menu button {
+        width: auto;
     }
-
-    header{
-        flex-direction:column;
-        align-items:flex-start;
+    .painel {
+        grid-template-columns: repeat(2, 1fr);
     }
-}
-#aprendizado {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-}
-
-#aprendizado ul {
-    margin: 20px 0;
-    text-align: left;
-    list-style-type: none;
-}
-
-#aprendizado li {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-.fazenda-logo {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.emoji-grande {
-    font-size: 5rem;
-    display: block;
-}
-
-.emoji-pequeno {
-    font-size: 2rem;
-    position: absolute;
-    bottom: 0;
-    animation: flutuar 3s ease-in-out infinite alternate;
-}
-
-.emoji-pequeno:nth-child(2) {
-    right: -25px;
-}
-
-.emoji-pequeno:nth-child(3) {
-    left: -25px;
-    animation-delay: 1.5s;
-}
-
-@keyframes flutuar {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-15px); }
+    .area {
+        min-height: 120px;
+        font-size: 1.1rem;
+    }
+    .evento h3 {
+        font-size: 1.6rem;
+    }
 }
