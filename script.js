@@ -472,3 +472,27 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
 document.getElementById("altoContraste").addEventListener("click", () => {
     document.body.classList.toggle("alto-contraste");
 });
+// ==========================================
+// NOVA SEÇÃO: O QUE A FAZENDA PRECISA (SUSTENTABILIDADE)
+// ==========================================
+
+// 1. Captura os novos elementos do HTML
+const aprendizado = document.getElementById("aprendizado");
+const btnAprender = document.getElementById("btnAprender");
+const btnVoltarMenu = document.getElementById("btnVoltarMenu");
+
+// 2. Evento para abrir a tela de Aprendizado
+if (btnAprender && aprendizado && menu) {
+    btnAprender.addEventListener("click", () => {
+        menu.classList.remove("ativa");
+        aprendizado.classList.add("ativa");
+    });
+}
+
+// 3. Evento para voltar da tela de Aprendizado para o Menu
+if (btnVoltarMenu && aprendizado && menu) {
+    btnVoltarMenu.addEventListener("click", () => {
+        aprendizado.classList.remove("ativa");
+        menu.classList.add("ativa");
+    });
+}

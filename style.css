@@ -341,3 +341,52 @@ progress::-webkit-progress-value{
         align-items:flex-start;
     }
 }
+#aprendizado {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#aprendizado ul {
+    margin: 20px 0;
+    text-align: left;
+    list-style-type: none;
+}
+
+#aprendizado li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+.fazenda-logo {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.emoji-grande {
+    font-size: 5rem;
+    display: block;
+}
+
+.emoji-pequeno {
+    font-size: 2rem;
+    position: absolute;
+    bottom: 0;
+    animation: flutuar 3s ease-in-out infinite alternate;
+}
+
+.emoji-pequeno:nth-child(2) {
+    right: -25px;
+}
+
+.emoji-pequeno:nth-child(3) {
+    left: -25px;
+    animation-delay: 1.5s;
+}
+
+@keyframes flutuar {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-15px); }
+}
