@@ -536,20 +536,75 @@ function atualizarPainel() {
 
 function verificarFim() {
 
-   producao <= 0 ||
+    if (
+        producao <= 0 ||
+        economia <= 0 ||
+        ambiente <= 0 ||
+        qualidade <= 0
+    ) {
 
+        musicaAmbiente.pause();
+
+        if(somDerrota){
+            somDerrota.play();
+        }
+
+        finalizarJogo("💀 Sua fazenda entrou em colapso.");
+        return;
+    }
+
+    ano++;
+    anoSpan.textContent = ano;
 
     if (ano > 10) {
 
         const media =
-            (producao + economia + ambiente + qualidade) / 4;
+        (producao + economia + ambiente + qualidade) / 4;
 
-        if (media >= 80) {
+        musicaAmbiente.pause();
 
-           musicaAmbiente.pause();
+        if(media >= 80){
 
-if(somVitoria){
-    somVitoria.play();
+            if(somVitoria){
+                somVitoria.play();
+            }
+
+            document.body.style.background =
+            "linear-gradient(135deg,#FFD700,#FFA500)";
+
+            finalizarJogo(
+            "🏆 Modelo de Fazenda Sustentável"
+            );
+
+        }
+        else if(media >= 60){
+
+            if(somVitoria){
+                somVitoria.play();
+            }
+
+            finalizarJogo(
+            "🥈 Produtor Consciente"
+            );
+
+        }
+        else{
+
+            if(somDerrota){
+                somDerrota.play();
+            }
+
+            finalizarJogo(
+            "⚠️ Desenvolvimento Insustentável"
+            );
+
+        }
+
+        return;
+    }
+
+    carregarEvento();
+    atualizarMapa();
 }
 
 finalizarJogo(
@@ -706,25 +761,35 @@ energia.innerHTML =
 "⚡⚡<br>Energia Eficiente";
 
 }
-const btnMusica = document.getElementById("btnMusica");
+// ======================
+// BOTÃO MÚSICA
+// ======================
+
+const btnMusica =
+document.getElementById("btnMusica");
 
 if(btnMusica){
 
-btnMusica.addEventListener("click",()=>{
-
-    if(musicaAmbiente){
+    btnMusica.addEventListener("click",()=>{
 
         if(musicaAmbiente.paused){
+
             musicaAmbiente.play();
+
         }else{
+
             musicaAmbiente.pause();
+
         }
 
-    }
-
-});
+    });
 
 }
+
+// ======================
+// ZOOM
+// ======================
+
 document
 .getElementById("zoomMais")
 .addEventListener("click",()=>{
@@ -746,6 +811,11 @@ document
     tamanhoFonte + "px";
 
 });
+
+// ======================
+// ALTO CONTRASTE
+// ======================
+
 document
 .getElementById("altoContraste")
 .addEventListener("click",()=>{
