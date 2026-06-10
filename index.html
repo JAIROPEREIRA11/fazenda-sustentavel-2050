@@ -1,242 +1,283 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazenda Sustentável 2050</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>🚜 Fazenda Sustentável 2050</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Tela Inicial -->
-    <section id="menu" class="tela ativa">
+<!-- MENU -->
+<section id="menu" class="tela ativa">
 
-        <h1>🚜 Fazenda Sustentável 2050</h1>
+    <h1>🚜 Fazenda Sustentável 2050</h1>
 
-        <p>
-            Construa uma fazenda produtiva sem destruir o meio ambiente.
-        </p>
+    <p>
+        Construa uma fazenda produtiva sem destruir o meio ambiente.
+    </p>
 
-        <div class="botoes-menu">
-            <button id="btnJogar">Jogar</button>
-            <button id="btnTutorial">Como Funciona</button>
-        </div>
-
-    </section>
-
-    <!-- Tutorial -->
-    <section id="tutorial" class="tela">
-
-<h2>📖 Como Funciona</h2>
-
-<p>
-Você é o gestor de uma fazenda sustentável no ano de 2050.
-</p>
-
-<p>
-Seu objetivo é produzir alimentos, gerar renda e proteger
-o meio ambiente ao mesmo tempo.
-</p>
-
-<p>
-Durante 10 anos você enfrentará desafios reais do campo.
-</p>
-
-<ul>
-
-<li>🌾 Produção agrícola</li>
-
-<li>💰 Economia da fazenda</li>
-
-<li>🌳 Preservação ambiental</li>
-
-<li>😊 Qualidade de vida da comunidade</li>
-
-</ul>
-
-<p>
-Cada escolha altera esses indicadores.
-</p>
-
-<p>
-Se algum deles chegar a zero, a fazenda entra em colapso.
-</p>
-
-<h2>🚜 O que é uma Fazenda Sustentável?</h2>
-
-<ul>
-
-<li>💧 Economiza água</li>
-
-<li>🌳 Preserva florestas</li>
-
-<li>☀️ Utiliza energia limpa</li>
-
-<li>🐝 Protege a biodiversidade</li>
-
-<li>👨‍🌾 Valoriza as pessoas do campo</li>
-
-</ul>
-
-<p>
-O desafio é encontrar equilíbrio entre lucro,
-produção e preservação ambiental.
-</p>
-            Mantenha todos os indicadores equilibrados para alcançar um futuro sustentável.
-        </p>
-
-        <button id="voltarMenu">
-            Voltar
-        </button>
-
-    </section>
-
-    <!-- Jogo -->
-    <section id="jogo" class="tela">
-
-        <header>
-
-             <h2>
-        Ano <span id="ano">1</span> / 10
-    </h2>
-
-    <div class="acessibilidade">
-
-        <button id="zoomMais">A+</button>
-
-        <button id="zoomMenos">A-</button>
-
-        <button id="altoContraste">🎨</button>
-
-        <button id="modoEscuro">🌙</button>
-
-        <button id="btnMusica">🎵</button>
-
-    </div>
-        </header>
-
-        <!-- Indicadores -->
-        <section class="painel">
-
-            <div class="indicador">
-                <p>🌾 Produção</p>
-                <progress id="barraProducao" value="50" max="100"></progress>
-                <span id="valorProducao">50</span>
-            </div>
-
-            <div class="indicador">
-                <p>💰 Economia</p>
-                <progress id="barraEconomia" value="50" max="100"></progress>
-                <span id="valorEconomia">50</span>
-            </div>
-
-            <div class="indicador">
-                <p>🌳 Meio Ambiente</p>
-                <progress id="barraAmbiente" value="50" max="100"></progress>
-                <span id="valorAmbiente">50</span>
-            </div>
-
-            <div class="indicador">
-                <p>😊 Qualidade de Vida</p>
-                <progress id="barraQualidade" value="50" max="100"></progress>
-                <span id="valorQualidade">50</span>
-            </div>
-
-        </section>
-<!-- MAPA DA FAZENDA -->
-
-<section class="fazenda">
-
-    <div id="lavoura" class="area">
-        🌱 Produção Inicial
-    </div>
-
-    <div id="rio" class="area">
-        💧 Rio Saudável
-    </div>
-
-    <div id="floresta" class="area">
-        🌳 Floresta Preservada
-    </div>
-
-    <div id="energia" class="area">
-        ⚡ Energia Convencional
+    <div class="botoes-menu">
+        <button id="btnJogar">Jogar</button>
+        <button id="btnTutorial">Como Funciona</button>
     </div>
 
 </section>
-        <!-- Evento -->
-        <section class="evento">
 
-            <h3 id="tituloEvento">
-                Uma praga atingiu a plantação.
-            </h3>
+<!-- TUTORIAL -->
+<section id="tutorial" class="tela">
 
-            <p id="descricaoEvento">
-                Escolha a melhor estratégia para resolver o problema.
-            </p>
+    <h2>📖 Como Funciona</h2>
 
-            <div class="opcoes">
+    <p>
+        Você é o gestor de uma fazenda sustentável no ano de 2050.
+    </p>
 
-                <button id="opcao1">
-                    Aplicar Agrotóxico
-                </button>
+    <p>
+        Seu objetivo é produzir alimentos, gerar renda e preservar o meio ambiente.
+    </p>
 
-                <button id="opcao2">
-                    Controle Biológico
-                </button>
+    <p>
+        Durante 10 anos você enfrentará desafios reais do campo.
+    </p>
 
-                <button id="opcao3">
-                    Não Fazer Nada
-                </button>
+    <ul>
+        <li>🌾 Produção Agrícola</li>
+        <li>💰 Economia da Fazenda</li>
+        <li>🌳 Meio Ambiente</li>
+        <li>😊 Qualidade de Vida</li>
+    </ul>
 
-            </div>
+    <p>
+        Cada decisão afeta os indicadores.
+    </p>
 
-        </section>
+    <p>
+        Se algum deles chegar a zero, a fazenda entra em colapso.
+    </p>
 
-    </section>
+    <h2>🌱 O que é uma Fazenda Sustentável?</h2>
 
-    <!-- Tela Final -->
-    <section id="fim" class="tela">
+    <ul>
+        <li>💧 Uso consciente da água</li>
+        <li>🌳 Preservação das florestas</li>
+        <li>☀️ Uso de energia limpa</li>
+        <li>🐝 Proteção da biodiversidade</li>
+        <li>👨‍🌾 Valorização das pessoas</li>
+    </ul>
 
-        <h2 id="resultadoTitulo">
-            Resultado Final
+    <button id="voltarMenu">
+        Voltar ao Menu
+    </button>
+
+</section>
+
+<!-- JOGO -->
+<section id="jogo" class="tela">
+
+    <header>
+
+        <h2>
+            Ano <span id="ano">1</span> / 10
         </h2>
 
-        <p id="resultadoTexto">
-            Sua jornada terminou.
-        </p>
+        <div class="acessibilidade">
 
-        <div class="relatorio">
+            <button id="zoomMais">A+</button>
 
-            <p>🌾 Produção Final: <span id="finalProducao"></span></p>
+            <button id="zoomMenos">A-</button>
 
-            <p>💰 Economia Final: <span id="finalEconomia"></span></p>
+            <button id="altoContraste">🎨</button>
 
-            <p>🌳 Meio Ambiente Final: <span id="finalAmbiente"></span></p>
+            <button id="modoEscuro">🌙</button>
 
-            <p>😊 Qualidade de Vida Final: <span id="finalQualidade"></span></p>
+            <button id="btnMusica">🎵</button>
 
         </div>
 
-        <button onclick="location.reload()">
-            Jogar Novamente
-        </button>
+    </header>
+
+    <!-- PAINEL -->
+    <section class="painel">
+
+        <div class="indicador">
+
+            <p>🌾 Produção</p>
+
+            <progress
+                id="barraProducao"
+                value="50"
+                max="100">
+            </progress>
+
+            <span id="valorProducao">50</span>
+
+        </div>
+
+        <div class="indicador">
+
+            <p>💰 Economia</p>
+
+            <progress
+                id="barraEconomia"
+                value="50"
+                max="100">
+            </progress>
+
+            <span id="valorEconomia">50</span>
+
+        </div>
+
+        <div class="indicador">
+
+            <p>🌳 Meio Ambiente</p>
+
+            <progress
+                id="barraAmbiente"
+                value="50"
+                max="100">
+            </progress>
+
+            <span id="valorAmbiente">50</span>
+
+        </div>
+
+        <div class="indicador">
+
+            <p>😊 Qualidade de Vida</p>
+
+            <progress
+                id="barraQualidade"
+                value="50"
+                max="100">
+            </progress>
+
+            <span id="valorQualidade">50</span>
+
+        </div>
 
     </section>
-<audio id="somClique" src="assets/sons/clique.mp3"></audio>
 
-<audio id="musicaAmbiente"
+    <!-- MAPA -->
+    <section class="fazenda">
+
+        <div id="lavoura" class="area">
+            🌱 Produção Inicial
+        </div>
+
+        <div id="rio" class="area">
+            💧 Rio Saudável
+        </div>
+
+        <div id="floresta" class="area">
+            🌳 Floresta Preservada
+        </div>
+
+        <div id="energia" class="area">
+            ⚡ Energia Convencional
+        </div>
+
+    </section>
+
+    <!-- EVENTO -->
+    <section class="evento">
+
+        <h3 id="tituloEvento">
+            Evento
+        </h3>
+
+        <p id="descricaoEvento">
+            Descrição do evento.
+        </p>
+
+        <div class="opcoes">
+
+            <button id="opcao1">
+                Opção 1
+            </button>
+
+            <button id="opcao2">
+                Opção 2
+            </button>
+
+            <button id="opcao3">
+                Opção 3
+            </button>
+
+        </div>
+
+    </section>
+
+</section>
+
+<!-- FINAL -->
+<section id="fim" class="tela">
+
+    <h2 id="resultadoTitulo">
+        Resultado Final
+    </h2>
+
+    <p>
+        Sua jornada terminou.
+    </p>
+
+    <div class="relatorio">
+
+        <p>
+            🌾 Produção:
+            <span id="finalProducao"></span>
+        </p>
+
+        <p>
+            💰 Economia:
+            <span id="finalEconomia"></span>
+        </p>
+
+        <p>
+            🌳 Meio Ambiente:
+            <span id="finalAmbiente"></span>
+        </p>
+
+        <p>
+            😊 Qualidade de Vida:
+            <span id="finalQualidade"></span>
+        </p>
+
+    </div>
+
+    <button onclick="location.reload()">
+        Jogar Novamente
+    </button>
+
+</section>
+
+<!-- ÁUDIOS -->
+
+<audio
+id="somClique"
+src="assets/sons/clique.mp3">
+</audio>
+
+<audio
+id="musicaAmbiente"
 src="assets/sons/ambiente.mp3"
-loop></audio>
+loop>
+</audio>
 
-<audio id="somVitoria"
-src="assets/sons/vitoria.mp3"></audio>
+<audio
+id="somVitoria"
+src="assets/sons/vitoria.mp3">
+</audio>
 
-<audio id="somDerrota"
-src="assets/sons/derrota.mp3"></audio>
+<audio
+id="somDerrota"
+src="assets/sons/derrota.mp3">
+</audio>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

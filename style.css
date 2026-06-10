@@ -1,237 +1,194 @@
-/* RESET */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #4caf50, #2e7d32);
-    color: white;
-    padding: 20px;
-}
-
-/* TELAS */
-
-.tela {
-    display: none;
-}
-
-.tela.ativa {
-    display: block;
-}
-
-/* MENU */
-
-#menu {
-    text-align: center;
-    margin-top: 100px;
-}
-
-#menu h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-#menu p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-}
-
-.botoes-menu {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-/* BOTÕES */
-
-button {
-    border: none;
-    cursor: pointer;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 1rem;
-    transition: 0.3s;
-    background: #ffffff;
-    color: #2e7d32;
-    font-weight: bold;
-}
-
-button:hover {
-    transform: scale(1.05);
-}
-
-/* TUTORIAL */
-
-#tutorial {
-    max-width: 800px;
-    margin: auto;
-}
-
-#tutorial h2 {
-    margin-bottom: 20px;
-}
-
-#tutorial ul {
-    margin: 20px 0;
-    padding-left: 25px;
-}
-
-#tutorial li {
-    margin-bottom: 10px;
-}
-
-/* CABEÇALHO */
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-#modoEscuro {
-    width: 55px;
-    height: 55px;
-    font-size: 1.2rem;
-}
-
-/* PAINEL */
-
-.painel {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.indicador {
-    background: rgba(255,255,255,0.15);
-    padding: 15px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-}
-
-.indicador p {
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.indicador span {
-    display: block;
-    margin-top: 8px;
-    font-size: 1.1rem;
-}
-
-/* BARRAS */
-
-progress {
-    width: 100%;
-    height: 25px;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #ddd;
-    border-radius: 20px;
-}
-
-progress::-webkit-progress-value {
-    background-color: #66ff66;
-    border-radius: 20px;
-}
-
-/* EVENTOS */
-
-.evento {
-    background: rgba(255,255,255,0.12);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-}
-
-.evento h3 {
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-}
-
-.evento p {
-    margin-bottom: 25px;
-}
-
-.opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.opcoes button {
-    width: 100%;
-}
-
-/* TELA FINAL */
-
-#fim {
-    text-align: center;
-    max-width: 800px;
-    margin: auto;
-}
-
-#fim h2 {
-    margin-bottom: 20px;
-}
-
-#fim p {
-    margin-bottom: 10px;
-}
-
-.relatorio {
-    background: rgba(255,255,255,0.15);
-    padding: 25px;
-    border-radius: 15px;
-    margin: 25px 0;
-}
-
-/* MODO ESCURO */
-
-.dark-mode {
-    background: linear-gradient(135deg, #111, #222);
-}
-
-.dark-mode .indicador,
-.dark-mode .evento,
-.dark-mode .relatorio {
-    background: rgba(255,255,255,0.08);
-}
-
-.dark-mode button {
-    background: #444;
-    color: white;
-}
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 768px) {
-
-    #menu h1 {
-        font-size: 2rem;
-    }
-
-    .evento h3 {
-        font-size: 1.4rem;
-    }
-
-    button {
-        width: 100%;
-    }
-
-}
 /* ==========================
-   MAPA DA FAZENDA
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ==========================
+   BODY
+========================== */
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#4caf50,#2e7d32);
+    color:white;
+    padding:20px;
+    transition:0.4s;
+}
+
+/* ==========================
+   TELAS
+========================== */
+
+.tela{
+    display:none;
+}
+
+.tela.ativa{
+    display:block;
+}
+
+/* ==========================
+   MENU
+========================== */
+
+#menu{
+    text-align:center;
+    margin-top:100px;
+}
+
+#menu h1{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+#menu p{
+    font-size:1.2rem;
+    margin-bottom:40px;
+}
+
+.botoes-menu{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+
+button{
+    border:none;
+    cursor:pointer;
+    padding:12px 24px;
+    border-radius:12px;
+    font-size:1rem;
+    transition:0.3s;
+    background:white;
+    color:#2e7d32;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* ==========================
+   TUTORIAL
+========================== */
+
+#tutorial{
+    max-width:900px;
+    margin:auto;
+}
+
+#tutorial h2{
+    margin:20px 0;
+}
+
+#tutorial p{
+    margin-bottom:15px;
+    line-height:1.6;
+}
+
+#tutorial ul{
+    margin:15px 0;
+    padding-left:25px;
+}
+
+#tutorial li{
+    margin-bottom:10px;
+}
+
+/* ==========================
+   CABEÇALHO
+========================== */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+/* ==========================
+   ACESSIBILIDADE
+========================== */
+
+.acessibilidade{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+#zoomMais,
+#zoomMenos,
+#altoContraste,
+#modoEscuro,
+#btnMusica{
+    width:55px;
+    height:55px;
+    font-size:1rem;
+}
+
+/* ==========================
+   PAINEL
+========================== */
+
+.painel{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.indicador{
+    background:rgba(255,255,255,0.15);
+    padding:15px;
+    border-radius:15px;
+    backdrop-filter:blur(5px);
+}
+
+.indicador p{
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.indicador span{
+    display:block;
+    margin-top:8px;
+    font-size:1.1rem;
+}
+
+/* ==========================
+   BARRAS
+========================== */
+
+progress{
+    width:100%;
+    height:25px;
+}
+
+progress::-webkit-progress-bar{
+    background:#ddd;
+    border-radius:20px;
+}
+
+progress::-webkit-progress-value{
+    background:#66ff66;
+    border-radius:20px;
+}
+
+/* ==========================
+   MAPA
 ========================== */
 
 .fazenda{
@@ -257,47 +214,130 @@ progress::-webkit-progress-value {
 
     background:rgba(255,255,255,0.15);
 
-    transition:0.5s;
+    transition:0.4s;
 }
 
-/* RESPONSIVO */
+/* ==========================
+   EVENTOS
+========================== */
 
-@media(max-width:768px){
-
-    .fazenda{
-        grid-template-columns:1fr;
-    }
-
+.evento{
+    background:rgba(255,255,255,0.12);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
 }
-.acessibilidade{
 
+.evento h3{
+    margin-bottom:15px;
+    font-size:1.7rem;
+}
+
+.evento p{
+    margin-bottom:25px;
+    line-height:1.5;
+}
+
+.opcoes{
     display:flex;
-    gap:8px;
-
+    flex-direction:column;
+    gap:15px;
 }
+
+.opcoes button{
+    width:100%;
+}
+
+/* ==========================
+   TELA FINAL
+========================== */
+
+#fim{
+    text-align:center;
+    max-width:800px;
+    margin:auto;
+}
+
+#fim h2{
+    margin-bottom:20px;
+}
+
+#fim p{
+    margin-bottom:10px;
+}
+
+.relatorio{
+    background:rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:15px;
+    margin:25px 0;
+}
+
+/* ==========================
+   MODO ESCURO
+========================== */
+
+.dark-mode{
+    background:linear-gradient(135deg,#111,#222);
+}
+
+.dark-mode .indicador,
+.dark-mode .evento,
+.dark-mode .area,
+.dark-mode .relatorio{
+    background:rgba(255,255,255,0.08);
+}
+
+.dark-mode button{
+    background:#444;
+    color:white;
+}
+
+/* ==========================
+   ALTO CONTRASTE
+========================== */
 
 .alto-contraste{
-
     background:black !important;
     color:yellow !important;
-
 }
 
 .alto-contraste .indicador,
 .alto-contraste .evento,
 .alto-contraste .area,
 .alto-contraste .relatorio{
-
     background:#222 !important;
-
 }
 
-#zoomMais,
-#zoomMenos,
-#altoContraste,
-#btnMusica{
+.alto-contraste button{
+    background:yellow !important;
+    color:black !important;
+}
 
-    width:55px;
-    height:55px;
+/* ==========================
+   RESPONSIVIDADE
+========================== */
 
+@media(max-width:768px){
+
+    #menu h1{
+        font-size:2rem;
+    }
+
+    button{
+        width:100%;
+    }
+
+    .evento h3{
+        font-size:1.3rem;
+    }
+
+    .fazenda{
+        grid-template-columns:1fr;
+    }
+
+    header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
 }
