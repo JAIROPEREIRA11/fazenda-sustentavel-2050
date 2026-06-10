@@ -7,13 +7,9 @@
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px; /* Essencial para o funcionamento correto do Zoom */
-    transition: font-size 0.2s ease;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px; /* Tamanho base inicial */
     min-height: 100vh;
     background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;
@@ -42,7 +38,7 @@ body {
     width: 45px;
     height: 45px;
     padding: 0;
-    font-size: 1rem;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +80,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     
     /* Mistura de degradê escuro protetor + a sua imagem fazenda.png */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.75)), 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
                 url('fazenda.png') no-repeat center center;
     background-size: cover;
     margin-top: 20px; 
@@ -96,7 +92,7 @@ body {
 }
 
 .emoji-principal {
-    font-size: 4.5rem;
+    font-size: 70px;
     display: inline-block;
     animation: balancar 4s ease-in-out infinite alternate;
 }
@@ -107,13 +103,13 @@ body {
 }
 
 #menu h1 {
-    font-size: 2.3rem;
+    font-size: 36px;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 #menu p {
-    font-size: 1.1rem;
+    font-size: 18px;
     margin-bottom: 35px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
@@ -135,7 +131,7 @@ button {
     cursor: pointer;
     padding: 14px 24px;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 16px;
     transition: 0.2s;
     background: white;
     color: #2e7d32;
@@ -163,7 +159,7 @@ button:hover, button:active {
 
 #tutorial h2, #aprendizado h2 {
     margin-bottom: 20px;
-    font-size: 1.6rem;
+    font-size: 24px;
     text-align: center;
 }
 
@@ -181,7 +177,7 @@ button:hover, button:active {
 
 .bloco-conteudo h3 {
     margin-bottom: 8px;
-    font-size: 1.2rem;
+    font-size: 18px;
     color: #fff;
 }
 
@@ -261,7 +257,7 @@ progress::-webkit-progress-value {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1rem;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.18);
@@ -310,12 +306,14 @@ progress::-webkit-progress-value {
 
 .relatorio p {
     margin-bottom: 8px;
-    font-size: 1.1rem;
+    font-size: 18px;
 }
 
 /* ==========================
    TEMAS COORDENADOS (ACESSIBILIDADE)
 ========================== */
+
+/* CORREÇÃO DO MODO ESCURO: MANTÉM A IMAGEM DE FUNDO DO MENU */
 .dark-mode {
     background: linear-gradient(135deg, #111, #222) !important;
 }
@@ -326,8 +324,10 @@ progress::-webkit-progress-value {
     background: #333 !important;
     color: #fff !important;
 }
+/* Força a imagem a continuar aparecendo no modo escuro, mas com uma camada protetora mais escura */
 .dark-mode #menu {
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('fazenda.png') no-repeat center center !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
+                url('fazenda.png') no-repeat center center !important;
     background-size: cover !important;
 }
 
@@ -347,7 +347,6 @@ progress::-webkit-progress-value {
     background: yellow !important;
     color: black !important;
 }
-/* No alto contraste removemos a imagem de fundo para priorizar a leitura absoluta */
 .alto-contraste #menu {
     background: black !important;
     border: 2px solid yellow !important;
@@ -358,7 +357,6 @@ progress::-webkit-progress-value {
 ========================== */
 @media(min-width: 600px) {
     body { padding: 100px 20px 20px 20px; }
-    #menu h1 { font-size: 3rem; }
     .botoes-menu { flex-direction: row; max-width: 100%; justify-content: center; }
     .botoes-menu button { width: auto; }
     .painel { grid-template-columns: repeat(2, 1fr); }

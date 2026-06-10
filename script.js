@@ -90,17 +90,28 @@ document.getElementById("altoContraste").addEventListener("click", () => {
     document.body.classList.toggle("alto-contraste");
 });
 
-// Correção do sistema de Zoom aumentando a raiz do HTML
+// CORREÇÃO DO ZOOM: Altera o tamanho diretamente na tag body afetando todos os elementos
 document.getElementById("zoomMais").addEventListener("click", () => {
-    tamanhoFonte += 2;
-    if (tamanhoFonte > 26) tamanhoFonte = 26; // Limite máximo para não quebrar o layout
-    document.documentElement.style.fontSize = tamanhoFonte + "px";
+    if (tamanhoFonte < 26) {
+        tamanhoFonte += 2;
+        document.body.style.fontSize = tamanhoFonte + "px";
+        
+        // Aplica também em botões e inputs para garantir acessibilidade integral
+        document.querySelectorAll("button").forEach(btn => {
+            btn.style.fontSize = tamanhoFonte + "px";
+        });
+    }
 });
 
 document.getElementById("zoomMenos").addEventListener("click", () => {
-    tamanhoFonte -= 2;
-    if (tamanhoFonte < 12) tamanhoFonte = 12; // Limite mínimo de legibilidade
-    document.documentElement.style.fontSize = tamanhoFonte + "px";
+    if (tamanhoFonte > 12) {
+        tamanhoFonte -= 2;
+        document.body.style.fontSize = tamanhoFonte + "px";
+        
+        document.querySelectorAll("button").forEach(btn => {
+            btn.style.fontSize = tamanhoFonte + "px";
+        });
+    }
 });
 
 // ======================
@@ -121,7 +132,7 @@ const eventos = [
         descricao: "Qual será sua estratégia?",
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economy: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
             { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
@@ -131,7 +142,7 @@ const eventos = [
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
             { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
-            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
+            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economy: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
     {
