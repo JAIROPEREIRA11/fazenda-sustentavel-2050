@@ -69,15 +69,22 @@ document.getElementById("voltarMenu").addEventListener("click", () => {
     menu.classList.add("ativa");
 });
 
-document.getElementById("btnAprender").addEventListener("click", () => {
-    menu.classList.remove("ativa");
-    aprendizado.classList.add("ativa");
-});
+// Suporte para botões extras caso existam no HTML, sem quebrar o script
+const btnAprender = document.getElementById("btnAprender");
+if (btnAprender) {
+    btnAprender.addEventListener("click", () => {
+        menu.classList.remove("ativa");
+        if (aprendizado) aprendizado.classList.add("ativa");
+    });
+}
 
-document.getElementById("btnVoltarMenu").addEventListener("click", () => {
-    aprendizado.classList.remove("ativa");
-    menu.classList.add("ativa");
-});
+const btnVoltarMenu = document.getElementById("btnVoltarMenu");
+if (btnVoltarMenu) {
+    btnVoltarMenu.addEventListener("click", () => {
+        if (aprendizado) aprendizado.classList.remove("ativa");
+        menu.classList.add("ativa");
+    });
+}
 
 // ======================
 // CONTROLES DE ACESSIBILIDADE
@@ -87,14 +94,16 @@ document.getElementById("modoEscuro").addEventListener("click", () => {
 });
 
 document.getElementById("altoContraste").addEventListener("click", () => {
+    document.body.classList.toggle("alto-contrast");
+    // Caso use a classe alternativa do CSS anterior
     document.body.classList.toggle("alto-contraste");
 });
 
-// NOVO SISTEMA DE ZOOM GLOBAL: Altera a variável base do CSS afetando TODAS as telas instantaneamente
 document.getElementById("zoomMais").addEventListener("click", () => {
     if (tamanhoFonte < 28) {
         tamanhoFonte += 2;
         document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
+        document.body.style.fontSize = tamanhoFonte + "px";
     }
 });
 
@@ -102,6 +111,7 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
     if (tamanhoFonte > 12) {
         tamanhoFonte -= 2;
         document.documentElement.style.setProperty('--tamanho-base', tamanhoFonte + 'px');
+        document.body.style.fontSize = tamanhoFonte + "px";
     }
 });
 
@@ -124,7 +134,7 @@ const eventos = [
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
             { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
-            { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
+            { texto: "Não investir", efeitos: { producao: -20, economy: -10, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
     {
@@ -156,15 +166,27 @@ const eventos = [
     }
 ];
 
+// Função auxiliar para criar o texto de ajuda com os custos/ganhos de cada botão
+function formatarTextoBotao(opcao) {
+    let dicas = [];
+    if (opcao.efeitos.producao) dicas.push(`🌾${opcao.efeitos.producao > 0 ? '+' : ''}${opcao.efeitos.producao}`);
+    if (opcao.efeitos.economia) dicas.push(`💰${opcao.efeitos.economia > 0 ? '+' : ''}${opcao.efeitos.economia}`);
+    if (opcao.efeitos.ambiente) dicas.push(`🌳${opcao.efeitos.ambiente > 0 ? '+' : ''}${opcao.efeitos.ambiente}`);
+    if (opcao.efeitos.qualidade) dicas.push(`😊${opcao.efeitos.qualidade > 0 ? '+' : ''}${opcao.efeitos.qualidade}`);
+    
+    return `${opcao.texto} (${dicas.join(' | ')})`;
+}
+
 function carregarEvento() {
     const evento = eventos[Math.floor(Math.random() * eventos.length)];
 
     tituloEvento.textContent = evento.titulo;
     descricaoEvento.textContent = evento.descricao;
 
-    opcao1.textContent = evento.opcoes[0].texto;
-    opcao2.textContent = evento.opcoes[1].texto;
-    opcao3.textContent = evento.opcoes[2].texto;
+    // Exibe o texto original juntamente com os impactos financeiros e ecológicos detalhados
+    opcao1.textContent = formatarTextoBotao(evento.opcoes[0]);
+    opcao2.textContent = formatarTextoBotao(evento.opcoes[1]);
+    opcao3.textContent = formatarTextoBotao(evento.opcoes[2]);
 
     opcao1.onclick = () => t_escolha(evento.opcoes[0]);
     opcao2.onclick = () => t_escolha(evento.opcoes[1]);
@@ -232,7 +254,7 @@ function verificarFim() {
             finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
         } else {
             if (somDerrota) somDerrota.play().catch(() => {});
-            finalizarJogo("⚠️ Alerta! Development Insustentável.");
+            finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
         }
         return;
     }
