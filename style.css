@@ -4,17 +4,19 @@
     box-sizing: border-box;
 }
 
-/* ==========================
-   BODY (COM IMAGEM DE FUNDO ESPETACULAR)
-========================== */
 
+/* ==========================
+   BODY (COM IMAGEM DE FUNDO)
+========================== */
 body {
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
-    /* Criamos um degradê escuro em cima da imagem para garantir o contraste do texto */
-    background: linear-gradient(rgba(46, 125, 50, 0.85), rgba(17, 17, 17, 0.9)), 
+    
+    /* Camada verde/preta transparente + a imagem fazenda.png */
+    background: linear-gradient(rgba(46, 125, 50, 0.88), rgba(17, 17, 17, 0.92)), 
                 url('fazenda.png') no-repeat center center fixed;
-    background-size: cover; /* Faz a imagem cobrir a tela inteira sem distorcer */
+                
+    background-size: cover; /* Faz a imagem cobrir a tela inteira */
     color: white;
     padding: 80px 15px 20px 15px;
     transition: 0.4s;
