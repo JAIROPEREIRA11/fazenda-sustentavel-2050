@@ -60,9 +60,8 @@ const statusQual = document.getElementById("statusQual");
 // NAVEGAÇÃO DE TELAS
 // ======================
 document.getElementById("btnJogar").addEventListener("click", () => {
-    // Inicia a música de fundo após o primeiro clique do usuário (exigência do navegador)
     if (musicaAmbiente) {
-        musicaAmbiente.volume = 0.4;
+        musicaAmbiente.volume = 0.3;
         musicaAmbiente.play().catch(() => {});
     }
     menu.classList.remove("ativa");
@@ -142,12 +141,12 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
 });
 
 // ======================
-// BANCO DE EVENTOS
+// BANCO DE EVENTOS (CORRIGIDO!)
 // ======================
 const eventos = [
     {
         titulo: "Uma praga atingiu a plantação.",
-        descricao: "Como deseja resolver o problema?",
+        descricao: "Como deseja resolver o problem?",
         opcoes: [
             { texto: "Aplicar agrotóxico químico", efeitos: { producao: 15, economia: 10, ambiente: -20, qualidade: -5 } },
             { texto: "Controle biológico natural", efeitos: { producao: 8, economia: -5, ambiente: 10, qualidade: 5 } },
@@ -159,7 +158,7 @@ const eventos = [
         descricao: "Qual será sua estratégia?",
         opcoes: [
             { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economy: -5, economia: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
             { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
@@ -168,7 +167,7 @@ const eventos = [
         descricao: "Deseja investir no sistema de captação solar da fazenda?",
         opcoes: [
             { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
-            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } }, // Corrigido aqui!
             { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
@@ -258,7 +257,7 @@ function atualizarPainel() {
 }
 
 function verificarRodada() {
-    // 1. Condição de colapso (Derrota imediata)
+    // 1. Condição de colapso (Derrota)
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
         if (somDerrota) {
@@ -292,7 +291,6 @@ function processarFimDoJogo() {
     if (musicaAmbiente) musicaAmbiente.pause();
     const media = (producao + economia + ambiente + qualidade) / 4;
 
-    // Força o play do som de vitória/derrota com volume máximo após ação direta do clique do usuário
     if (media >= 55) {
         if (somVitoria) {
             somVitoria.currentTime = 0;
