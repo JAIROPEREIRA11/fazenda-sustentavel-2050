@@ -66,7 +66,7 @@ document.getElementById("btnJogar").addEventListener("click", () => {
     }
     menu.classList.remove("ativa");
     jogo.classList.add("ativa");
-    ano = 1; // Garante que começa no ano 1
+    ano = 1; 
     if (anoSpan) anoSpan.textContent = ano;
     carregarEvento();
     atualizarMapa();
@@ -106,14 +106,14 @@ if (btnAvancarAno) {
         
         transicaoAno.classList.remove("ativa");
         
-        ano++; // Avança o ano aqui com segurança
+        ano++; 
         
         if (ano > 10) {
             processarFimDoJogo();
         } else {
             if (anoSpan) anoSpan.textContent = ano;
-            jogo.classList.add("ativa"); // Volta para a tela do jogo ativo
-            carregarEvento(); // Carrega a nova pergunta obrigatoriamente
+            jogo.classList.add("ativa"); 
+            carregarEvento(); 
         }
     });
 }
@@ -180,7 +180,7 @@ const eventos = [
         opcoes: [
             { texto: "Recuperar mata ciliar protetora", efeitos: { producao: 0, economia: -5, ambiente: 15, qualidade: 10 } },
             { texto: "Construir reservatório artificial", efeitos: { producao: 5, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economy: 0, economia: 0, ambiente: -15, qualidade: -10 } }
+            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economia: 0, ambiente: -15, qualidade: -10 } }
         ]
     },
     {
@@ -207,7 +207,6 @@ function formatarTextoBotao(opcao) {
 function carregarEvento() {
     if (!opcao1 || !opcao2 || !opcao3) return;
     
-    // Sorteia um evento aleatório do nosso banco
     const evento = eventos[Math.floor(Math.random() * eventos.length)];
 
     tituloEvento.textContent = evento.titulo;
@@ -217,7 +216,6 @@ function carregarEvento() {
     opcao2.textContent = formatarTextoBotao(evento.opcoes[1]);
     opcao3.textContent = formatarTextoBotao(evento.opcoes[2]);
 
-    // Reseta as ações de clique para evitar acumular funções antigas travadas
     opcao1.onclick = null;
     opcao2.onclick = null;
     opcao3.onclick = null;
@@ -243,7 +241,7 @@ function t_escolha(opcao) {
     }
 
     producao = Math.max(0, Math.min(100, producao));
-    economia = Math.max(0, Math.min(100, economy || economia));
+    economia = Math.max(0, Math.min(100, economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
     qualidade = Math.max(0, Math.min(100, qualidade));
 
@@ -266,7 +264,6 @@ function atualizarPainel() {
 }
 
 function verificarRodada() {
-    // 1. Condição de colapso (Derrota)
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
         if (somDerrota) {
@@ -278,9 +275,15 @@ function verificarRodada() {
         return;
     }
 
-    // 2. Transição normal de fim de ano (Sucesso parcial)
+    // Toca som de vitória momentâneo ao concluir a rodada com sucesso
+    if (somVitoria) {
+        somVitoria.currentTime = 0;
+        somVitoria.volume = 1.0;
+        somVitoria.play().catch(() => {});
+    }
+
     jogo.classList.remove("ativa");
-    transicaoAno.classList.add("ativa");
+    if (transicaoAno) transicaoAno.classList.add("ativa");
     
     if(statusProd) statusProd.textContent = producao;
     if(statusEcon) statusEcon.textContent = economia;
@@ -304,7 +307,7 @@ function processarFimDoJogo() {
         if (somVitoria) {
             somVitoria.currentTime = 0;
             somVitoria.volume = 1.0;
-            somVitoria.play().catch((e) => console.log("Erro somVitoria:", e));
+            somVitoria.play().catch(() => {});
         }
         if (media >= 80) {
             finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
@@ -315,7 +318,7 @@ function processarFimDoJogo() {
         if (somDerrota) {
             somDerrota.currentTime = 0;
             somDerrota.volume = 1.0;
-            somDerrota.play().catch((e) => console.log("Erro somDerrota:", e));
+            somDerrota.play().catch(() => {});
         }
         finalizarJogo("⚠️ Alerta! Desenvolvimento Insustentável.");
     }
