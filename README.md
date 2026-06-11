@@ -1,6 +1,6 @@
 # 🚜 Fazenda Sustentável 2050
 
-> **Projeto desenvolvido para o Programa Agrinho 2026** > **Categoria:** Robótica / Programação / Game Design  
+> **Projeto desenvolvido para o Programa Agrinho 2026** > **Categoria:** Programação
 > **Tema:** Sustentabilidade no Campo e Inovação Agrícola  
 
 ---
