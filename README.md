@@ -70,3 +70,10 @@ O desenvolvimento priorizou tecnologias nativas, leves e limpas para garantir o 
 ├── fazenda.png         # Imagem imersiva de fundo do cenário agrícola
 └── assets/
     └── sons/           # Efeitos sonoros e música de fundo (.mp3)# fazenda-sustentavel-2050
+---
+
+## 👥 Autores e Ficha Técnica
+* **Estudante(s):** Rian Eduardo Santos da Silva
+* **Professor(a) Orientador(a):** Jairo Pereira da Silva
+* **Escola:** Colégio Estadual General Carneiro
+* **Município / Núcleo de Educação:** Roncador - PR Nucleo Regional de Campo Mourão
