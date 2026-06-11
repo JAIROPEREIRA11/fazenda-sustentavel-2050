@@ -1,6 +1,4 @@
-// ======================
-// VARIÁVEIS DO JOGO
-// ======================
+// Criando as variáveis para controlar os atributos da fazenda
 let producao = 50;
 let economia = 50;
 let ambiente = 50;
@@ -10,9 +8,7 @@ let ano = 1;
 let energiaSolar = 0;
 let tamanhoFonte = 16; 
 
-// ======================
-// ELEMENTOS PRINCIPAIS
-// ======================
+// Pegando os elementos das telas no HTML para poder mexer com JS
 const menu = document.getElementById("menu");
 const tutorial = document.getElementById("tutorial");
 const aprendizado = document.getElementById("aprendizado");
@@ -22,16 +18,19 @@ const fim = document.getElementById("fim");
 
 const anoSpan = document.getElementById("ano");
 
+// Pegando as barras de progresso
 const barraProducao = document.getElementById("barraProducao");
 const barraEconomia = document.getElementById("barraEconomia");
 const barraAmbiente = document.getElementById("barraAmbiente");
 const barraQualidade = document.getElementById("barraQualidade");
 
+// Pegando os textos que mostram os números dos atributos
 const valorProducao = document.getElementById("valorProducao");
 const valorEconomia = document.getElementById("valorEconomia");
 const valorAmbiente = document.getElementById("valorAmbiente");
 const valorQualidade = document.getElementById("valorQualidade");
 
+// Elementos da parte de perguntas (eventos)
 const tituloEvento = document.getElementById("tituloEvento");
 const descricaoEvento = document.getElementById("descricaoEvento");
 
@@ -39,26 +38,26 @@ const opcao1 = document.getElementById("opcao1");
 const opcao2 = document.getElementById("opcao2");
 const opcao3 = document.getElementById("opcao3");
 
+// Elementos do mapa visual da fazenda
 const lavoura = document.getElementById("lavoura");
 const rio = document.getElementById("rio");
 const floresta = document.getElementById("floresta");
 const energia = document.getElementById("energia");
 
+// Arquivos de som do jogo
 const somClique = document.getElementById("somClique");
 const musicaAmbiente = document.getElementById("musicaAmbiente");
 const somVitoria = document.getElementById("somVitoria");
 const somDerrota = document.getElementById("somDerrota");
 
-// Elementos da tela de transição de ano
+// Dados que aparecem na tela de fim de ano
 const btnAvancarAno = document.getElementById("btnAvancarAno");
 const statusProd = document.getElementById("statusProd");
 const statusEcon = document.getElementById("statusEcon");
 const statusAmb = document.getElementById("statusAmb");
 const statusQual = document.getElementById("statusQual");
 
-// ======================
-// NAVEGAÇÃO DE TELAS
-// ======================
+// Função para iniciar o jogo quando clica no botão Jogar
 document.getElementById("btnJogar").addEventListener("click", () => {
     if (musicaAmbiente) {
         musicaAmbiente.volume = 0.3;
@@ -73,6 +72,7 @@ document.getElementById("btnJogar").addEventListener("click", () => {
     atualizarPainel();
 });
 
+// Controlando a abertura e fechamento do tutorial
 document.getElementById("btnTutorial").addEventListener("click", () => {
     menu.classList.remove("ativa");
     tutorial.classList.add("ativa");
@@ -83,6 +83,7 @@ document.getElementById("voltarMenu").addEventListener("click", () => {
     menu.classList.add("ativa");
 });
 
+// Controlando a aba de aprendizado ecológico
 const btnAprender = document.getElementById("btnAprender");
 if (btnAprender) {
     btnAprender.addEventListener("click", () => {
@@ -99,13 +100,15 @@ if (btnVoltarMenu) {
     });
 }
 
-// Botão para avançar a partir da tela de transição de ano concluído
+// Ação do botão que faz passar de ano na transição
 if (btnAvancarAno) {
     btnAvancarAno.addEventListener("click", () => {
-        if (somClique) { somClique.currentTime = 0; somClique.play().catch(() => {}); }
+        if (somClique) { 
+            somClique.currentTime = 0; 
+            somClique.play().catch(() => {}); 
+        }
         
         transicaoAno.classList.remove("ativa");
-        
         ano++; 
         
         if (ano > 10) {
@@ -118,9 +121,7 @@ if (btnAvancarAno) {
     });
 }
 
-// ======================
-// CONTROLES DE ACESSIBILIDADE
-// ======================
+// Sistema simples de acessibilidade mudando classes do body
 document.getElementById("modoEscuro").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
@@ -129,6 +130,7 @@ document.getElementById("altoContraste").addEventListener("click", () => {
     document.body.classList.toggle("alto-contraste");
 });
 
+// Fazendo o zoom do texto aumentar e diminuir usando CSS Variables
 document.getElementById("zoomMais").addEventListener("click", () => {
     if (tamanhoFonte < 26) {
         tamanhoFonte += 2;
@@ -143,103 +145,104 @@ document.getElementById("zoomMenos").addEventListener("click", () => {
     }
 });
 
-// ======================
-// BANCO DE EVENTOS
-// ======================
+// Lista com os desafios da fazenda (Banco de dados do jogo)
 const eventos = [
     {
         titulo: "Uma praga atingiu a plantação.",
         descricao: "Como deseja resolver o problema?",
         opcoes: [
-            { texto: "Aplicar agrotóxico químico", efeitos: { producao: 15, economia: 10, ambiente: -20, qualidade: -5 } },
-            { texto: "Controle biológico natural", efeitos: { producao: 8, economia: -5, ambiente: 10, qualidade: 5 } },
-            { texto: "Não fazer nada", efeitos: { producao: -15, economia: -10, ambiente: 5, qualidade: 0 } }
+            { texto: "Aplicar agrotóxico químico", efeitos: { producao: 15, economy: 10, ambiente: -20, qualidade: -5 } },
+            { texto: "Controle biológico natural", efeitos: { producao: 8, economy: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Não fazer nada", efeitos: { producao: -15, economy: -10, ambiente: 5, qualidade: 0 } }
         ]
     },
     {
         titulo: "Uma seca severa está chegando.",
         descricao: "Qual será sua estratégia?",
         opcoes: [
-            { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economia: -5, ambiente: -10, qualidade: 0 } },
-            { texto: "Não investir", efeitos: { producao: -20, economia: -10, ambiente: 0, qualidade: -5 } }
+            { texto: "Investir em irrigação inteligente", efeitos: { producao: 10, economy: -10, ambiente: 5, qualidade: 5 } },
+            { texto: "Abrir poço artesiano emergencial", efeitos: { producao: 8, economy: -5, ambiente: -10, qualidade: 0 } },
+            { texto: "Não investir", efeitos: { producao: -20, economy: -10, ambiente: 0, qualidade: -5 } }
         ]
     },
     {
         titulo: "Programa de incentivo à energia limpa.",
         descricao: "Deseja investir no sistema de captação solar da fazenda?",
         opcoes: [
-            { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economia: -15, ambiente: 15, qualidade: 5 } },
-            { texto: "Instalar parcialmente", efeitos: { producao: 3, economia: -5, ambiente: 10, qualidade: 5 } },
-            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economia: 0, ambiente: -5, qualidade: 0 } }
+            { texto: "Instalar painéis solares na sede", efeitos: { producao: 5, economy: -15, ambiente: 15, qualidade: 5 } },
+            { texto: "Instalar parcialmente", efeitos: { producao: 3, economy: -5, ambiente: 10, qualidade: 5 } },
+            { texto: "Recusar e usar gerador a diesel", efeitos: { producao: 0, economy: 0, ambiente: -5, qualidade: 0 } }
         ]
     },
     {
         titulo: "Uma nascente está perdendo vazão de água.",
         descricao: "Como deseja agir?",
         opcoes: [
-            { texto: "Recuperar mata ciliar protetora", efeitos: { producao: 0, economia: -5, ambiente: 15, qualidade: 10 } },
-            { texto: "Construir reservatório artificial", efeitos: { producao: 5, economia: -10, ambiente: 5, qualidade: 5 } },
-            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economia: 0, ambiente: -15, qualidade: -10 } }
+            { texto: "Recuperar mata ciliar protetora", efeitos: { producao: 0, economy: -5, ambiente: 15, qualidade: 10 } },
+            { texto: "Construir reservatório artificial", efeitos: { producao: 5, economy: -10, ambiente: 5, qualidade: 5 } },
+            { texto: "Ignorar o sumiço da água", efeitos: { producao: -5, economy: -15, ambiente: -15, qualidade: -10 } }
         ]
     },
     {
         titulo: "A população de abelhas locais sumiu.",
         descricao: "A falta de polinização está derrubando os frutos.",
         opcoes: [
-            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economia: -5, ambiente: 15, qualidade: 5 } },
-            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economia: -15, ambiente: -5, qualidade: 0 } },
-            { texto: "Não fazer nada", efeitos: { producao: -12, economia: -5, ambiente: -10, qualidade: -5 } }
+            { texto: "Criar jardim para polinizadores", efeitos: { producao: 12, economy: -5, ambiente: 15, qualidade: 5 } },
+            { texto: "Contratar polinização mecânica", efeitos: { producao: 8, economy: -15, ambiente: -5, qualidade: 0 } },
+            { texto: "Não fazer nada", efeitos: { producao: -12, economy: -5, ambiente: -10, qualidade: -5 } }
         ]
     }
 ];
 
+// Coloca os numerozinhos de ajuda do lado do texto do botão
 function formatarTextoBotao(opcao) {
     let dicas = [];
-    if (opcao.efeitos.producao) dicas.push(`🌾${opcao.efeitos.producao > 0 ? '+' : ''}${opcao.efeitos.producao}`);
-    if (opcao.efeitos.economia) dicas.push(`💰${opcao.efeitos.economia > 0 ? '+' : ''}${opcao.efeitos.economia}`);
-    if (opcao.efeitos.ambiente) dicas.push(`🌳${opcao.efeitos.ambiente > 0 ? '+' : ''}${opcao.efeitos.ambiente}`);
-    if (opcao.efeitos.qualidade) dicas.push(`😊${opcao.efeitos.qualidade > 0 ? '+' : ''}${opcao.efeitos.qualidade}`);
+    let ef = opcao.efeitos;
+    if (ef.producao) dicas.push(`🌾${ef.producao > 0 ? '+' : ''}${ef.producao}`);
+    if (ef.economy) dicas.push(`💰${ef.economy > 0 ? '+' : ''}${ef.economy}`);
+    if (ef.ambiente) dicas.push(`🌳${ef.ambiente > 0 ? '+' : ''}${ef.ambiente}`);
+    if (ef.qualidade) dicas.push(`😊${ef.qualidade > 0 ? '+' : ''}${ef.qualidade}`);
     
     return `${opcao.texto} (${dicas.join(' | ')})`;
 }
 
+// Sorteia e joga a pergunta na tela do usuário
 function carregarEvento() {
     if (!opcao1 || !opcao2 || !opcao3) return;
     
-    const evento = eventos[Math.floor(Math.random() * eventos.length)];
+    // Escolhe um item aleatório dentro do array de eventos
+    const eventoAleatorio = eventos[Math.floor(Math.random() * eventos.length)];
 
-    tituloEvento.textContent = evento.titulo;
-    descricaoEvento.textContent = evento.descricao;
+    tituloEvento.textContent = eventoAleatorio.titulo;
+    descricaoEvento.textContent = eventoAleatorio.descricao;
 
-    opcao1.textContent = formatarTextoBotao(evento.opcoes[0]);
-    opcao2.textContent = formatarTextoBotao(evento.opcoes[1]);
-    opcao3.textContent = formatarTextoBotao(evento.opcoes[2]);
+    opcao1.textContent = formatarTextoBotao(eventoAleatorio.opcoes[0]);
+    opcao2.textContent = formatarTextoBotao(eventoAleatorio.opcoes[1]);
+    opcao3.textContent = formatarTextoBotao(eventoAleatorio.opcoes[2]);
 
-    opcao1.onclick = null;
-    opcao2.onclick = null;
-    opcao3.onclick = null;
-
-    opcao1.onclick = () => t_escolha(evento.opcoes[0]);
-    opcao2.onclick = () => t_escolha(evento.opcoes[1]);
-    opcao3.onclick = () => t_escolha(evento.opcoes[2]);
+    opcao1.onclick = () => aplicarEscolha(eventoAleatorio.opcoes[0]);
+    opcao2.onclick = () => aplicarEscolha(eventoAleatorio.opcoes[1]);
+    opcao3.onclick = () => aplicarEscolha(eventoAleatorio.opcoes[2]);
 }
 
-function t_escolha(opcao) {
+// Executa os efeitos da opção que o jogador escolheu
+function aplicarEscolha(opcao) {
     if (somClique) {
         somClique.currentTime = 0;
         somClique.play().catch(() => {});
     }
 
     producao += opcao.efeitos.producao || 0;
-    economia += opcao.efeitos.economia || 0;
+    economia += opcao.efeitos.economy || 0;
     ambiente += opcao.efeitos.ambiente || 0;
     qualidade += opcao.efeitos.qualidade || 0;
 
+    // Se o texto falar de painel solar, ativa a matriz limpa no mapa
     if (opcao.texto.toLowerCase().includes("solar")) {
         energiaSolar++;
     }
 
+    // Travando os valores entre 0 e 100 para a barra não passar do limite
     producao = Math.max(0, Math.min(100, producao));
     economia = Math.max(0, Math.min(100, economia));
     ambiente = Math.max(0, Math.min(100, ambiente));
@@ -249,6 +252,7 @@ function t_escolha(opcao) {
     verificarRodada();
 }
 
+// Atualiza o valor numérico e visual das barras de progresso
 function atualizarPainel() {
     if(barraProducao) barraProducao.value = producao;
     if(barraEconomia) barraEconomia.value = economia;
@@ -263,6 +267,7 @@ function atualizarPainel() {
     atualizarMapa();
 }
 
+// Verifica se perdeu por zerar atributos ou se abre a tela de transição de ano
 function verificarRodada() {
     if (producao <= 0 || economia <= 0 || ambiente <= 0 || qualidade <= 0) {
         if (musicaAmbiente) musicaAmbiente.pause();
@@ -275,7 +280,6 @@ function verificarRodada() {
         return;
     }
 
-    // Toca som de vitória momentâneo ao concluir a rodada com sucesso
     if (somVitoria) {
         somVitoria.currentTime = 0;
         somVitoria.volume = 1.0;
@@ -299,17 +303,18 @@ function verificarRodada() {
     }
 }
 
+// Faz as contas das médias para dar o troféu final ao jogador
 function processarFimDoJogo() {
     if (musicaAmbiente) musicaAmbiente.pause();
-    const media = (producao + economia + ambiente + qualidade) / 4;
+    const resultadoMedia = (producao + economia + ambiente + qualidade) / 4;
 
-    if (media >= 55) {
+    if (resultadoMedia >= 55) {
         if (somVitoria) {
             somVitoria.currentTime = 0;
             somVitoria.volume = 1.0;
             somVitoria.play().catch(() => {});
         }
-        if (media >= 80) {
+        if (resultadoMedia >= 80) {
             finalizarJogo("🏆 Incrível! Sua Fazenda é Modelo de Sustentabilidade Mundial 2050!");
         } else {
             finalizarJogo("🥈 Bom trabalho! Você é um Produtor Consciente.");
@@ -324,6 +329,7 @@ function processarFimDoJogo() {
     }
 }
 
+// Troca o jogo ativo pela tela de estatísticas finais
 function finalizarJogo(resultado) {
     if(jogo) jogo.classList.remove("ativa");
     if(transicaoAno) transicaoAno.classList.remove("ativa");
@@ -343,6 +349,7 @@ function finalizarJogo(resultado) {
     if(fQual) fQual.textContent = qualidade;
 }
 
+// Altera os textos e emojis dos quadrantes da fazenda com base nos indicadores
 function atualizarMapa() {
     if (floresta) {
         floresta.innerHTML = ambiente >= 80 ? "🌳🌳🌳<br>Mata Preservada" : (ambiente >= 50 ? "🌳🌳<br>Reserva Legal" : "🪵<br>Desmatamento");
@@ -358,6 +365,7 @@ function atualizarMapa() {
     }
 }
 
+// Botão para mutar ou desmutar a música de fundo
 const btnMusica = document.getElementById("btnMusica");
 if (btnMusica) {
     btnMusica.addEventListener("click", () => {

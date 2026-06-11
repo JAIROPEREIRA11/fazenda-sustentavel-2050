@@ -1,6 +1,4 @@
-/* ==========================
-   RESET & VARIÁVEIS
-========================== */
+/* Configuração de variáveis e padrões de reset */
 :root {
     --tamanho-base: 16px;
 }
@@ -11,9 +9,7 @@
     box-sizing: border-box;
 }
 
-/* ==========================
-   BODY (Fundo fixo em todas as telas)
-========================== */
+/* Configurações básicas da página de exibição */
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: var(--tamanho-base);
@@ -29,9 +25,7 @@ body {
     background-attachment: fixed !important;
 }
 
-/* ==========================
-   TELAS
-========================== */
+/* Configurações estruturais das seções (telas) do app */
 .tela {
     display: none;
     max-width: 900px;
@@ -48,9 +42,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==========================
-   MENU PRINCIPAL & ANIMAÇÃO DO TRATOR
-========================== */
+/* Customização e efeito de animação do trator na home */
 #menu {
     text-align: center;
     margin-top: 40px;
@@ -85,9 +77,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* ==========================
-   BOTÕES GERAIS
-========================== */
+/* Estilo padronizado para os botões do sistema */
 button {
     border: none;
     cursor: pointer;
@@ -106,9 +96,7 @@ button:hover {
     background: #f5f5f5;
 }
 
-/* ==========================
-   EFEITO DESFOCADO (Blur) PARA TEXTOS
-========================== */
+/* Efeito de desfoque de fundo fosco para os blocos de texto */
 #tutorial, #aprendizado, #transicao-ano, #fim {
     background: rgba(0, 0, 0, 0.6) !important; 
     padding: 35px 25px;
@@ -155,9 +143,7 @@ button:hover {
     font-size: 1.25rem;
 }
 
-/* ==========================
-   BARRA DE ACESSIBILIDADE FIXA
-========================== */
+/* Barra superior que fica presa no topo para acessibilidade */
 .acessibilidade-fixa {
     position: fixed;
     top: 0;
@@ -185,9 +171,7 @@ button:hover {
     border-radius: 50%;
 }
 
-/* ==========================
-   TELA DE JOGO ATIVO
-========================== */
+/* Estilização do dashboard interno do jogo ativo */
 header h2 {
     font-size: 1.8rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
@@ -230,7 +214,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     font-weight: bold;
 }
 
-/* MAPA DOS QUADRADOS */
+/* Estilo do Grid com os quadrantes do mapa */
 .fazenda {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -252,7 +236,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* BLOCO DO EVENTO */
+/* Container de exibição da caixa de perguntas */
 .evento {
     background: rgba(0, 0, 0, 0.65);
     padding: 25px;
@@ -284,9 +268,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     padding: 14px;
 }
 
-/* ==========================
-   MODO ESCURO COORDENADO
-========================== */
+/* Classes alternativas ativadas por JavaScript (Acessibilidade) */
 .dark-mode {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('fazenda.png') !important;
 }
@@ -303,9 +285,6 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     color: white;
 }
 
-/* ==========================
-   ALTO CONTRASTE (Regra de acessibilidade)
-========================== */
 .alto-contraste {
     background-image: none !important;
     background: black !important;
@@ -335,9 +314,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     color: black !important;
 }
 
-/* ==========================
-   RESPONSIVIDADE (Celular)
-========================== */
+/* Regras de media query para dispositivos móveis */
 @media (max-width: 768px) {
     :root {
         --tamanho-base: 14px; 
