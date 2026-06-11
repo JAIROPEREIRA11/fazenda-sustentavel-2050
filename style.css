@@ -1,5 +1,5 @@
-/* Configuração de variáveis e padrões de reset */
 :root {
+    /* variavel do tamanho de tudo */
     --tamanho-base: 16px;
 }
 
@@ -9,14 +9,14 @@
     box-sizing: border-box;
 }
 
-/* Configurações básicas da página de exibição */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: var(--tamanho-base);
+    /* IMPORTANTE: Vincula o tamanho do texto do body à nossa variável de acessibilidade */
+    font-size: var(--tamanho-base) !important;
     min-height: 100vh;
     color: white;
     padding: 100px 20px 20px 20px;
-    transition: background 0.4s, color 0.4s;
+    transition: background 0.4s, color 0.4s, font-size 0.2s;
     
     background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('fazenda.png') !important;
     background-size: cover !important;
@@ -24,8 +24,7 @@ body {
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
 }
-
-/* Configurações estruturais das seções (telas) do app */
+/* telas do app
 .tela {
     display: none;
     max-width: 900px;
@@ -49,11 +48,18 @@ body {
 }
 
 #menu h1 {
-    font-size: 3rem;
+    
+    font-size: 2.5em; 
     margin-bottom: 25px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
+#menu p {
+    
+    font-size: 1.1em; 
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
 .trator-animado {
     display: inline-block;
     animation: balancoTrator 0.6s ease-in-out infinite alternate;
@@ -62,12 +68,6 @@ body {
 @keyframes balancoTrator {
     from { transform: rotate(-5deg) translateY(0); }
     to { transform: rotate(8deg) translateY(-4px); }
-}
-
-#menu p {
-    font-size: 1.3rem;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
 }
 
 .botoes-menu {
