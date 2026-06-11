@@ -1,30 +1,31 @@
+/* Configuração do tamanho de fonte do jogo */
 :root {
-    /* variavel do tamanho de tudo */
     --tamanho-base: 16px;
 }
 
+/* Zera as margens padrão do navegador */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Configura o fundo e a fonte padrão do corpo da página */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /* IMPORTANTE: Vincula o tamanho do texto do body à nossa variável de acessibilidade */
     font-size: var(--tamanho-base) !important;
     min-height: 100vh;
     color: white;
     padding: 100px 20px 20px 20px;
     transition: background 0.4s, color 0.4s, font-size 0.2s;
-    
     background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('fazenda.png') !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
 }
-/* telas do app
+
+/* Esconde as telas que não estão ativas */
 .tela {
     display: none;
     max-width: 900px;
@@ -32,34 +33,38 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Mostra a tela que tiver a classe ativa */
 .tela.ativa {
     display: block;
 }
 
+/* Efeito de surgimento suave das telas */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Customização e efeito de animação do trator na home */
+/* Alinhamento do menu principal */
 #menu {
     text-align: center;
     margin-top: 40px;
 }
 
+/* Título principal adaptável ao zoom */
 #menu h1 {
-    
     font-size: 2.5em; 
     margin-bottom: 25px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
+/* Texto de descrição adaptável ao zoom */
 #menu p {
-    
-    font-size: 1.1em; 
+    font-size: 1.2em; 
     margin-bottom: 40px;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
 }
+
+/* Animação que faz o trator balançar na tela */
 .trator-animado {
     display: inline-block;
     animation: balancoTrator 0.6s ease-in-out infinite alternate;
@@ -70,6 +75,7 @@ body {
     to { transform: rotate(8deg) translateY(-4px); }
 }
 
+/* Organização dos botões do menu inicial */
 .botoes-menu {
     display: flex;
     justify-content: center;
@@ -77,13 +83,13 @@ body {
     flex-wrap: wrap;
 }
 
-/* Estilo padronizado para os botões do sistema */
+/* Estilo padrão para todos os botões do jogo */
 button {
     border: none;
     cursor: pointer;
     padding: 14px 28px;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: bold;
     transition: 0.3s;
     background: white;
@@ -91,12 +97,13 @@ button {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
+/* Efeito visual quando passa o mouse por cima do botão */
 button:hover {
     transform: scale(1.05);
     background: #f5f5f5;
 }
 
-/* Efeito de desfoque de fundo fosco para os blocos de texto */
+/* Fundo escuro com desfoque para as telas de texto */
 #tutorial, #aprendizado, #transicao-ano, #fim {
     background: rgba(0, 0, 0, 0.6) !important; 
     padding: 35px 25px;
@@ -107,29 +114,33 @@ button:hover {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* Títulos das telas de textos e avisos */
 #tutorial h2, #aprendizado h2, #transicao-ano h2 {
-    font-size: 2rem;
+    font-size: 2em;
     margin-bottom: 20px;
     border-bottom: 2px solid rgba(255,255,255,0.2);
     padding-bottom: 10px;
 }
 
+/* Textos internos das telas de avisos */
 #tutorial p, #aprendizado p, #transicao-ano p {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     margin-bottom: 15px;
     line-height: 1.6;
 }
 
+/* Lista de itens no tutorial */
 #tutorial ul {
     margin: 20px 0;
     padding-left: 25px;
 }
 
 #tutorial li {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     margin-bottom: 12px;
 }
 
+/* Caixas de conteúdo da aba de aprendizado pedagógico */
 .bloco-conteudo {
     background: rgba(255, 255, 255, 0.1) !important;
     padding: 20px;
@@ -140,16 +151,16 @@ button:hover {
 
 .bloco-conteudo h3 {
     margin-bottom: 8px;
-    font-size: 1.25rem;
+    font-size: 1.25em;
 }
 
-/* Barra superior que fica presa no topo para acessibilidade */
+/* Barra de acessibilidade presa no topo da tela */
 .acessibilidade-fixa {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     display: flex;
@@ -160,10 +171,11 @@ button:hover {
     box-shadow: 0 2px 15px rgba(0,0,0,0.4);
 }
 
+/* Botões circulares de acessibilidade */
 .acessibilidade-fixa button {
     width: 48px;
     height: 48px;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -171,13 +183,14 @@ button:hover {
     border-radius: 50%;
 }
 
-/* Estilização do dashboard interno do jogo ativo */
+/* Cabeçalho que mostra o ano atual dentro do jogo */
 header h2 {
-    font-size: 1.8rem;
+    font-size: 1.8em;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     margin-bottom: 20px;
 }
 
+/* Alinhamento dos quatro indicadores de progresso */
 .painel {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -185,6 +198,7 @@ header h2 {
     margin-bottom: 25px;
 }
 
+/* Caixa individual de cada indicador */
 .indicador {
     background: rgba(0, 0, 0, 0.55);
     padding: 15px;
@@ -198,6 +212,7 @@ header h2 {
     margin-bottom: 8px;
 }
 
+/* Configurações visuais das barras de progresso html */
 progress {
     width: 100%;
     height: 20px;
@@ -210,11 +225,11 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
 .indicador span {
     display: block;
     margin-top: 6px;
-    font-size: 1.1rem;
+    font-size: 1.1em;
     font-weight: bold;
 }
 
-/* Estilo do Grid com os quadrantes do mapa */
+/* Configuração do mapa visual dividido em quadrantes */
 .fazenda {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -222,13 +237,14 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     margin-bottom: 25px;
 }
 
+/* Estilo de cada quadrante do mapa dinâmico */
 .area {
     min-height: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     font-weight: bold;
     border-radius: 15px;
     background: rgba(0, 0, 0, 0.55);
@@ -236,7 +252,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Container de exibição da caixa de perguntas */
+/* Caixa centralizada onde aparecem as perguntas */
 .evento {
     background: rgba(0, 0, 0, 0.65);
     padding: 25px;
@@ -248,7 +264,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
 
 .evento h3 {
     margin-bottom: 12px;
-    font-size: 1.5rem;
+    font-size: 1.5em;
 }
 
 .evento p {
@@ -256,6 +272,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     line-height: 1.5;
 }
 
+/* Alinhamento dos botões de escolhas da pergunta */
 .opcoes {
     display: flex;
     flex-direction: column;
@@ -268,7 +285,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     padding: 14px;
 }
 
-/* Classes alternativas ativadas por JavaScript (Acessibilidade) */
+/* Modificações visuais do modo escuro */
 .dark-mode {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('fazenda.png') !important;
 }
@@ -285,6 +302,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     color: white;
 }
 
+/* Estilo completo ativado pelo botão de alto contraste */
 .alto-contraste {
     background-image: none !important;
     background: black !important;
@@ -314,7 +332,7 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     color: black !important;
 }
 
-/* Regras de media query para dispositivos móveis */
+/* Ajustes visuais para celulares e telas pequenas */
 @media (max-width: 768px) {
     :root {
         --tamanho-base: 14px; 
@@ -325,13 +343,14 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     }
 
     #menu h1 {
-        font-size: 2.2rem;
+        font-size: 2em;
     }
 
     .botoes-menu button {
         width: 100%;
     }
 
+    /* Transforma o mapa em uma coluna única no celular */
     .fazenda {
         grid-template-columns: 1fr; 
     }
@@ -344,6 +363,6 @@ progress::-webkit-progress-value { background: #4cd137; border-radius: 10px; }
     .acessibilidade-fixa button {
         width: 42px;
         height: 42px;
-        font-size: 1.1rem;
+        font-size: 1.1em;
     }
 }
